@@ -46,7 +46,20 @@ struct EVec3
 	void FromS8s(signed char *v);
 };
 
-class EQuat
+struct EVec4
 {
-public:
+	union {
+		float d[4];
+		struct {
+			float x;
+			float y;
+			float z;
+			float w;
+		};
+	};
+};
+
+struct EQuat
+{
+
 };

@@ -8,18 +8,25 @@
 #include <time.h>
 
 #include "games/sims/ESRC/appmain.h"
+#include "engine/e_app.h"
 
 SDL_Window* win = NULL;
 static SDL_GLContext context;
 static SDL_Event ev;
 SDL_Surface* surface = NULL;
 static int shouldClose = 0;
+ESimsApp* theApp;
 
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 448
 
 int main(int argc, char* argv[])
 {
+    theApp = new ESimsApp();
+    
+    theApp->SetArgs(argc, argv);
+    theApp->CreateAndStartAppThread();
+
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS | SDL_INIT_JOYSTICK);
 
     SDL_GL_SetAttribute( SDL_GL_CONTEXT_MAJOR_VERSION, 1 );

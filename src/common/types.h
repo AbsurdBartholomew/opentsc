@@ -3,10 +3,12 @@
  * Replace me     *
 ******************/
 #pragma once
+#include <stddef.h>
 
 typedef unsigned char u8;
 typedef unsigned char u_char;
 typedef unsigned char Byte;
+typedef signed char s8;
 
 typedef short unsigned int u16;
 typedef short unsigned int u_short;
@@ -32,8 +34,15 @@ typedef long unsigned int u64;
 typedef long long unsigned int u_long128;
 typedef long unsigned int u_long;
 typedef long long unsigned int u128;
+#ifdef Sint64
+#undef Sint64
 typedef long int Sint64;
+#endif
+
+#ifdef _LARGE_INTEGER
+#undef _LARGE_INTEGER
 typedef long int _LARGE_INTEGER;
+#endif
 
 typedef int Bool;
 typedef int s32;
