@@ -1,0 +1,9 @@
+// STATUS: NOT STARTED
+
+#ifndef C__EOR_SRC2_ENGINE_E_VIDEOMODE_H
+#define C__EOR_SRC2_ENGINE_E_VIDEOMODE_H
+
+extern int _iVideoMode;
+
+
+#endif // C__EOR_SRC2_ENGINE_E_VIDEOMODE_H

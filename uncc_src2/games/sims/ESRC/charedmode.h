@@ -1,0 +1,8 @@
+// STATUS: NOT STARTED
+
+#ifndef C__EOR_SRC2_GAMES_SIMS_ESRC_CHAREDMODE_H
+#define C__EOR_SRC2_GAMES_SIMS_ESRC_CHAREDMODE_H
+
+void ECharedMode::~ECharedMode(int __in_chrg);
+
+#endif // C__EOR_SRC2_GAMES_SIMS_ESRC_CHAREDMODE_H

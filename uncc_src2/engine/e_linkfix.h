@@ -1,0 +1,9 @@
+// STATUS: NOT STARTED
+
+#ifndef C__EOR_SRC2_ENGINE_E_LINKFIX_H
+#define C__EOR_SRC2_ENGINE_E_LINKFIX_H
+
+
+void LinkFix();
+
+#endif // C__EOR_SRC2_ENGINE_E_LINKFIX_H

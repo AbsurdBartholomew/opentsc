@@ -1,0 +1,9 @@
+// STATUS: NOT STARTED
+
+#ifndef C__EOR_SRC2_COMMON_UTIL_E_CHECKSUM_H
+#define C__EOR_SRC2_COMMON_UTIL_E_CHECKSUM_H
+
+extern unsigned int EChecksum::m_table[256];
+
+
+#endif // C__EOR_SRC2_COMMON_UTIL_E_CHECKSUM_H

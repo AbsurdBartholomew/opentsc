@@ -3,7 +3,7 @@ PROJECT_NAME = opentsc
 SOURCE_ROOT = src
 SOURCES += $(wildcard $(SOURCE_ROOT)/*.cpp) \
 			$(wildcard $(SOURCE_ROOT)/engine/*.cpp) \
-			$(wildcard $(SOURCE_ROOT)/common/*.cpp) \
+			$(wildcard $(SOURCE_ROOT)/common/*.cpp) $(wildcard $(SOURCE_ROOT)/common/*/*.cpp) \
 			$(wildcard $(SOURCE_ROOT)/games/sims/*/*.cpp)
 
 OUT_DIR := out/
