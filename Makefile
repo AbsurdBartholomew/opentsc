@@ -10,14 +10,13 @@ OUT_DIR := out/
 BIN_DIR := bin
 BIN_NAME := $(PROJECT_NAME).exe
 LIB_DIR := lib
-LIBRARIES := -lmingw32 -lgdi32 -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_image -lOpengl32 -lglu32
+LIBRARIES := -lmingw32 -lgdi32 -lSDL2main -lSDL2 -lSDL2_mixer -lOpengl32 -lglu32
 OPTIMIZATION := -O0
 
 # Compiler Stuff
 CPPFLAGS := -I$(SOURCE_ROOT) -MMD -MP
 CFLAGS   := -Wall
-LDFLAGS  := -L$(LIB_DIR) -static-libgcc -static
-LDLIBS   := $(LIBRARIES)
+LDFLAGS  := -L$(LIB_DIR) -static-libgcc
 
 # Targets
 BIN := $(BIN_DIR)/$(BIN_NAME)
@@ -31,7 +30,7 @@ clean:
 
 ############ Program Compilation ############
 $(BIN): $(OBJS) | $(BIN_DIR)
-	$(CXX) $(LDFLAGS) $^ $(LDLIBS) -o $@
+	$(CXX) $(LDFLAGS) $^ $(LIBRARIES) -o $@
 
 $(OUT_DIR)/%.o: ./%.cpp | $(OUT_DIR)
 	@mkdir -p $(dir $@)
