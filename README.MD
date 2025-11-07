@@ -1,0 +1,4 @@
+# OpenTSC
+
+## Deps
+SDL2
