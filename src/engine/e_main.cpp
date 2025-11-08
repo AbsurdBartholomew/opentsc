@@ -2,13 +2,15 @@
  * OpenTSC Header *
  * Replace me     *
 ******************/
+#include "e_main.h"
+
 #include <stdio.h>
-#include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 #include <time.h>
 
 #include "games/sims/ESRC/appmain.h"
 #include "engine/e_app.h"
+#include "common/util/e_globalmanager.h"
 
 SDL_Window* win = NULL;
 static SDL_GLContext context;
@@ -24,6 +26,7 @@ int main(int argc, char* argv[])
 {
     theApp = new ESimsApp();
     
+    EGlobalManager::Startup();
     theApp->SetArgs(argc, argv);
     theApp->CreateAndStartAppThread();
 
