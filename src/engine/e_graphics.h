@@ -8,6 +8,7 @@
 #include "common/types.h"
 #include "common/math/e_vec3.h"
 #include "common/math/e_mat4.h"
+#include "common/util/e_globalmanager.h"
 #include "engine/e_dl.h"
 
 struct ETextureDef {
@@ -35,7 +36,7 @@ enum ECoordinateSystem {
 	E_COORDSYS_XRIGHT_YUP_ZBACK = 1
 };
 
-class EGraphics // : EGlobalManagerClient
+class EGraphics : EGlobalManagerClient
 {
 protected:
 	bool m_insideBeginEnd;

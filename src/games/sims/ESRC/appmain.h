@@ -16,6 +16,26 @@ public:
     EGameStateMan *m_pGameStateMan;
     
     ESimsApp();
+    virtual ~ESimsApp();
 
+    char* GetDataDirectory();
+    char* GetModuleDirectory();
+    char* GetBuildVersion();
     char* GetAppName();
+
+    void PlayMovie(u32 resid, int x, int y);
+    void StopMovie();
+    bool IsMoviePlaying();
+
+    int GetEventTableSize();
+
+protected:
+    void Main();
+    void Init();
+    void Update();
+    void Shutdown();
+
+    void SystemInit() { ; }
+    void SystemUpdate() { ; }
+    int GetAppStackSize() { ; }
 };

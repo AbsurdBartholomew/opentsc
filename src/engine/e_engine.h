@@ -4,9 +4,10 @@
 ******************/
 #pragma once
 
+#include "common/util/e_globalmanager.h"
 #include "engine/e_clock.h"
 
-class EEngine // : EGlobalManagerClient
+class EEngine : EGlobalManagerClient
 {
 protected:
 	bool m_initialized;

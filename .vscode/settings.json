@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.gaz": "makefile",
+        "*.cpp!": "cpp",
+        "new": "cpp"
+    }
+}

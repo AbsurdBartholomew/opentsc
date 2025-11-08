@@ -15,7 +15,7 @@ OPTIMIZATION := -O0
 
 # Compiler Stuff
 CPPFLAGS := -I$(SOURCE_ROOT) -MMD -MP
-CFLAGS   := -Wall
+CFLAGS   := -Wall -Wno-write-strings
 LDFLAGS  := -L$(LIB_DIR) -static-libgcc -static
 
 # Targets
