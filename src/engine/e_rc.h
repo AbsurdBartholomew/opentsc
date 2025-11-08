@@ -7,6 +7,8 @@
 #include "common/types.h"
 #include "common/math/e_vec3.h"
 #include "common/math/e_mat4.h"
+#include "engine/e_dl.h"
+#include "engine/e_window.h"
 
 struct EGEVert {
 	EVec4 vModel;
@@ -19,7 +21,7 @@ struct EGEVert {
 class ERC
 {
 protected:
-    //EDL *m_pdl;
+    EDL *m_pdl;
 	int m_nEntriesLeftInSeg;
 	//EDLEntry *m_pEntry;
 	//RCMode m_mode;

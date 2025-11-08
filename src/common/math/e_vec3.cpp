@@ -71,6 +71,6 @@ void EVec3::FromS8s(signed char *v)
         iVar2 = iVar2 + -1;
         v = v + 1;
         x = (float)(int)cVar1 * 0.007874016;
-
+        // this = (EVec3 *)((int)&this->field0_0x0 + 4);
     } while(-1 < iVar2);
 }

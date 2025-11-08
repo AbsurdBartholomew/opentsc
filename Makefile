@@ -10,7 +10,7 @@ OUT_DIR := out/
 BIN_DIR := bin
 BIN_NAME := $(PROJECT_NAME).exe
 LIB_DIR := lib
-LIBRARIES := -lmingw32 -lgdi32 -lSDL2main -lSDL2 -lSDL2_mixer -lOpengl32 -lglu32 -Wl,--dynamicbase -Wl,--nxcompat -lm -ldinput8 -ldxguid -ldxerr8 -luser32 -lgdi32 -lwinmm -limm32 -lole32 -loleaut32 -lshell32 -lsetupapi -lversion -luuid
+LIBRARIES := -lmingw32 -lgdi32 -lSDL2main -lSDL2 -lOpengl32 -lglu32 -Wl,--dynamicbase -Wl,--nxcompat -lm -ldinput8 -ldxguid -ldxerr8 -luser32 -lgdi32 -lwinmm -limm32 -lole32 -loleaut32 -lshell32 -lsetupapi -lversion -luuid
 OPTIMIZATION := -O0
 
 # Compiler Stuff

@@ -7,6 +7,9 @@
 #include "common/types.h"
 #include "engine/e_rc.h"
 
+class EGameStateMan;
+class EGameStateId;
+
 class EGameStateId {
 protected:
 	u32 m_id;
