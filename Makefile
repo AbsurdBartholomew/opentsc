@@ -2,8 +2,8 @@ PROJECT_NAME = opentsc
 
 SOURCE_ROOT = src
 SOURCES += $(wildcard $(SOURCE_ROOT)/*.cpp) \
-			$(wildcard $(SOURCE_ROOT)/engine/*.cpp) \
-			$(wildcard $(SOURCE_ROOT)/common/*.cpp) $(wildcard $(SOURCE_ROOT)/common/*/*.cpp) \
+			$(wildcard $(SOURCE_ROOT)/engine/*.cpp) $(wildcard $(SOURCE_ROOT)/engine/*/*.cpp) \
+			$(wildcard $(SOURCE_ROOT)/common/*.cpp) $(wildcard $(SOURCE_ROOT)/common/*/*.cpp) $(wildcard $(SOURCE_ROOT)/common/*/*/*.cpp) \
 			$(wildcard $(SOURCE_ROOT)/games/sims/*/*.cpp)
 
 OUT_DIR := out/
@@ -30,7 +30,7 @@ clean:
 
 ############ Program Compilation ############
 $(BIN): $(OBJS) | $(BIN_DIR)
-	$(CXX) $(LDFLAGS) $^ $(LIBRARIES) -o $@
+	$(CXX) $(LDFLAGS) $^ $(LIBRARIES) $(PROJECT_NAME).res -o $@
 
 $(OUT_DIR)/%.o: ./%.cpp | $(OUT_DIR)
 	@mkdir -p $(dir $@)
