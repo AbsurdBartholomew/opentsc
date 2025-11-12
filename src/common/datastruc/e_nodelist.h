@@ -20,5 +20,5 @@ typedef TLinkedList<ENodeListNode,4,8> ENodeListList;
 class ENodeList
 {
 protected:
-    //ENodeListList m_l;
+    ENodeListList m_l;
 };

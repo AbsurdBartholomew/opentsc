@@ -24,6 +24,9 @@ protected:
 	T *m_pHead;
 	T *m_pTail;
 
+	int x = a;
+	int y = b;
+
 public:
 	TLinkedList()
 	{
@@ -42,7 +45,8 @@ public:
 
 	void Init()
 	{
-
+		x = 0;
+		y = 0;
 	}
 
 	void RemoveAll()
