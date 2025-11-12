@@ -15,7 +15,7 @@ class ENodeListNode {
 	//static void* operator new(/* parameters unknown */);
 	//static void operator delete(/* parameters unknown */);
 };
-//typedef TLinkedList<ENodeListNode,4,8> ENodeListList;
+typedef TLinkedList<ENodeListNode,4,8> ENodeListList;
 
 class ENodeList
 {

@@ -9,6 +9,8 @@
 #include <time.h>
 
 #include "engine/e_app.h"
+#include "engine/sdl/e_sdlengine.h"
+
 #include "common/sync/sdl/e_thread.h"
 #include "common/util/e_globalmanager.h"
 
@@ -31,6 +33,7 @@ EThread _idleThread;
 int main(int argc, char* argv[])
 {
     theApp = new ESimsApp();
+    _pEngine = new ESdlEngine();
 
     SystemStart();
     EGlobalManager::Startup();
@@ -40,7 +43,8 @@ int main(int argc, char* argv[])
     
     _pApp->CreateAndStartAppThread();
     _idleThread.SetPriority(100);
-    
+
+    //_pEngine->ManagedShutdown();
 
 
     while(!shouldClose)

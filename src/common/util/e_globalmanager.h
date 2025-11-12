@@ -22,6 +22,9 @@ protected:
 public:
 	static bool Startup();
 	static void Shutdown();
+
+	friend class EEngine;
+	friend class EGlobalManagerClient;
 protected:
 	static void Register(EGlobalManagerClient *pClient, int priority);
 };

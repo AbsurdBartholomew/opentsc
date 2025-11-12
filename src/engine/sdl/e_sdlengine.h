@@ -10,3 +10,5 @@ class ESdlEngine : public EEngine
 {
     static bool InitMemoryManager();
 };
+
+extern EEngine *_pEngine;

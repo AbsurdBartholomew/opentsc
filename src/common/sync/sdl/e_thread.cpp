@@ -2,7 +2,10 @@
  * OpenTSC Header *
  * Replace me     *
  ******************/
+#include <SDL2/SDL_thread.h>
+
 #include "e_thread.h"
+#include "engine/memory/e_memman.h"
 #include "common/types.h"
 
 EThread table[4];
@@ -30,8 +33,6 @@ EThread::~EThread()
 
 bool EThread::Create(int priority, int stackSize, void *pStack)
 {
-    ThreadParam param;
-    int id;
     EThread *pNewNode;
     EThread *pNode;
 
@@ -39,20 +40,67 @@ bool EThread::Create(int priority, int stackSize, void *pStack)
     void *pvVar2;
     long lVar3;
 
+    m_stackSize = stackSize;
+    if(pStack == NULL)
+    {
+        pvVar2 = _memmanAlloc(stackSize, 0x60);
+        m_pStack = pvVar2;
 
+        if(pvVar2 == NULL) return false;
+
+        m_stackAutoAllocated = true;
+    }
+    else
+    {
+        m_pStack = pStack;
+        m_stackAutoAllocated = false;
+    }
+
+
+    m_thread = SDL_CreateThreadWithStackSize((SDL_ThreadFunction)EThread::ThreadEntryPoint, m_szName, m_stackSize, (void*)m_pStack);
+    SDL_SetThreadPriority((SDL_ThreadPriority)priority);
+
+    m_threadId = SDL_GetThreadID(m_thread);
+
+    return m_threadId >= 0;
+}
+
+void EThread::Start()
+{
+    
+}
+
+void EThread::Stop()
+{
+
+}
+
+void EThread::Destroy()
+{
+    
 }
 
 void EThread::AttachToCallingThread()
 {
-
 }
 
 void EThread::SetPriority(int priority)
 {
-
 }
 
 void EThread::Main()
+{
+}
+
+int EThread::GetStackSize()
+{
+
+    //ReferThreadStatus(m_threadId, &param);
+    //return param.stackSize;
+    return 1;
+}
+
+void EThread::ThreadEntryPoint(void *pThis)
 {
     
 }

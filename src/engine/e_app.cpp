@@ -4,6 +4,7 @@
  ******************/
 #include "e_app.h"
 #include "common/types.h"
+#include "common/sync/sdl/e_thread.h"
 
 EApp *_pApp = NULL;
 
@@ -41,6 +42,12 @@ void EApp::Main()
 
 void EApp::CreateAndStartAppThread()
 {
+    EThread *thread = new EThread();
+    int stackSize = thread->GetStackSize();
+
+    thread->Create(98, stackSize, NULL);
+    thread->SetThreadName("Application");
+    thread->Start();
 }
 
 void EApp::SystemInit()

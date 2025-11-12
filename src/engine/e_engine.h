@@ -6,20 +6,8 @@
 
 #include "common/util/e_globalmanager.h"
 #include "engine/e_clock.h"
+#include "engine/events/e_eventmanager.h"
 
-#include "games/sims/ESRC/e_semaphore.h"
-
-struct EEvent {
-protected:
-	ESemaphore m_sema;
-	
-public:
-	EEvent();
-	bool Wait();
-	void Signal();
-	void iSignal();
-	void Clear();
-};
 
 class EEngine : EGlobalManagerClient
 {
@@ -47,6 +35,7 @@ public:
 	virtual void ShutdownThreads();
 	virtual void Reboot();
 
+	friend int main(int argc, char* argv[]);
 protected:
 	virtual bool InitSubsystems();
 	virtual bool InitFileSystem();

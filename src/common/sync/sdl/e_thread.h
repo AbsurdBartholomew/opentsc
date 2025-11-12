@@ -4,11 +4,12 @@
 ******************/
 #pragma once
 
+#include <SDL2/SDL_thread.h>
 #include "common/types.h"
-
+/*
 struct ThreadParam {
 	int status;
-	void (*entry)(/* parameters unknown */);
+	void (*entry)();
 	void *stack;
 	int stackSize;
 	void *gpReg;
@@ -19,7 +20,7 @@ struct ThreadParam {
 	int waitType;
 	int waitId;
 	int wakeupCount;
-};
+};*/
 
 class EThread
 {
@@ -29,6 +30,8 @@ protected:
 	int m_stackSize;
 	bool m_stackAutoAllocated;
 	char *m_szName;
+
+	SDL_Thread* m_thread;
 public:
 	EThread *m_pLastThread;
 	EThread *m_pNextThread;

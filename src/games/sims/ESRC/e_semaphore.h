@@ -17,7 +17,7 @@ protected:
 public:
 	ESemaphore(int maxCount, int initialCount);
 	ESemaphore();
-	static void SetBreakId(/* parameters unknown */);
+	static void SetBreakId(int id);
 	bool Create(int maxCount, int initialCount);
 	void Destroy();
 	bool IsCreated();
@@ -25,9 +25,9 @@ public:
 	/* vtable[3] */ virtual bool Release();
 	bool iAcquire();
 	void iRelease();
-	static ESemaphore* GetObject(/* parameters unknown */);
+	static ESemaphore* GetObject(int id);
 	int GetCurrentCount();
 	int GetMaxCount();
-	ESemaphore& operator++();
-	ESemaphore& operator--();
+	//ESemaphore& operator++();
+	//ESemaphore& operator--();
 };
