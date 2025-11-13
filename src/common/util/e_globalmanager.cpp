@@ -28,7 +28,6 @@ void EGlobalManager::Register(EGlobalManagerClient *pClient, int priority)
 
 bool EGlobalManager::Startup()
 {
-    /*
     int i;
     int j;
 
@@ -56,13 +55,13 @@ bool EGlobalManager::Startup()
                             temp = m_clients[i-1];
                             puVar1 = (u8*)&temp.priority + 3;
 
-
+                            
                         }
                     }
                 }
             }
         }
-    }*/
+    }
     /*
         int iVar1;
         EGMClientData uVar2;

@@ -113,23 +113,6 @@ protected:
 
 //typedef TNodeList<ISimInstance *> ISimInstanceList;
 //typedef TNodeList<CursorFloorTile *> CursorFloorTilePtrList;
-extern u32 ESimsCam::m_modeDef;
-extern float ESimsCam::m_rotSpeedDef;
-extern float ESimsCam::m_minHeight;
-extern float ESimsCam::m_maxZoom;
-extern float ESimsCam::m_minZoom;
-extern float ESimsCam::m_minTilt;
-extern float ESimsCam::m_maxTilt;
-extern float ESimsCam::m_transSpeedDef;
-extern float ESimsCam::m_transSpeedMin;
-extern EVec3 ESimsCam::m_vEyeDef;
-extern EVec3 ESimsCam::m_vTargetDef;
-extern EVec3 ESimsCam::m_vUpDef;
-extern EVec3 ESimsCam::m_minZoomPt;
-extern EVec3 ESimsCam::m_ctrlPt1;
-extern EVec3 ESimsCam::m_ctrlPt2;
-extern EVec3 ESimsCam::m_maxZoomPt;
-//extern EIBezierSpline ESimsCam::m_spline;
 extern float _fov;
 extern float _nearPlane;
 extern float _farPlane;

@@ -8,8 +8,6 @@
 #include "engine/memory/e_memman.h"
 #include "common/types.h"
 
-EThread table[4];
-
 EThread::EThread()
 {
     m_threadId = -1;
@@ -86,6 +84,7 @@ void EThread::AttachToCallingThread()
 
 void EThread::SetPriority(int priority)
 {
+    SDL_SetThreadPriority((SDL_ThreadPriority)priority);
 }
 
 void EThread::Main()
@@ -94,13 +93,12 @@ void EThread::Main()
 
 int EThread::GetStackSize()
 {
-
-    //ReferThreadStatus(m_threadId, &param);
-    //return param.stackSize;
-    return 1;
+    return m_stackSize;
 }
 
 void EThread::ThreadEntryPoint(void *pThis)
 {
     
+    //(**(void **)(pThis + 0x1c) + 0x14))
+    //        ((int)pThis + (int)*(short *)(*(int *)((int)pThis + 0x1c) + 0x10));
 }

@@ -15,8 +15,8 @@ protected:
 	u32 m_id;
 	
 public:
-	EGameStateId();
-	EGameStateId(EGameStateId*, int a);
+	//EGameStateId();
+	//EGameStateId(EGameStateId*, int a);
 };
 
 class EGameState {

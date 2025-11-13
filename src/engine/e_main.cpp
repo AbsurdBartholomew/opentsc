@@ -14,8 +14,6 @@
 #include "common/sync/sdl/e_thread.h"
 #include "common/util/e_globalmanager.h"
 
-#include "games/sims/ESRC/appmain.h"
-
 SDL_Window* win = NULL;
 static SDL_GLContext context;
 static SDL_Event ev;
@@ -66,7 +64,7 @@ bool SystemStart()
 
     srand(time(0));
 
-    win = SDL_CreateWindow(APP_NAME, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
+    win = SDL_CreateWindow(APP_NAME, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 
     if(win == NULL)
     {

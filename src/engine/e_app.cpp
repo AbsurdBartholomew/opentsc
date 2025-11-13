@@ -5,6 +5,7 @@
 #include "e_app.h"
 #include "common/types.h"
 #include "common/sync/sdl/e_thread.h"
+#include "engine/sdl/e_sdlengine.h"
 
 EApp *_pApp = NULL;
 
@@ -38,6 +39,17 @@ char *EApp::GetDataDirectory()
 
 void EApp::Main()
 {
+    long lVar3;
+
+    lVar3 = _pEngine->m_retraceHistoryCpu[2];
+
+    if(lVar3 != 0)
+    {
+        while(m_done != false)
+        {
+            Update();
+        }
+    }
 }
 
 void EApp::CreateAndStartAppThread()
@@ -56,6 +68,19 @@ void EApp::SystemInit()
 
 void EApp::SystemUpdate()
 {
+    bool bVar3;
+    EAppState state;
+
+    if(m_appState == E_APPSTATE_MOVIEPLAY)
+    {
+        if (m_appNextState == E_APPSTATE_MOVIEPLAY) {
+            state = m_appNextState;
+        }
+        else
+        {
+            //_pGfx->ManagedShutdown();
+        }
+    }
 }
 
 void EApp::PlayMovie(u32 resid, int x, int y)

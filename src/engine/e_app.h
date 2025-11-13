@@ -4,9 +4,16 @@
 ******************/
 #pragma once
 
+#include "common/sync/sdl/e_thread.h"
 #include "common/types.h"
 
-class EApp
+enum EAppState {
+	E_APPSTATE_NORMAL = 0,
+	E_APPSTATE_NEXTMOVIEPLAY = 1,
+	E_APPSTATE_MOVIEPLAY = 2
+};
+
+class EApp : public EThread
 {
 public:
     EApp();
@@ -15,8 +22,8 @@ public:
     bool m_done;
 	int m_nArgc;
 	char **m_ppszArgv;
-	//EAppState m_appState;
-	//EAppState m_appNextState;
+	EAppState m_appState;
+	EAppState m_appNextState;
 	//ERMovie *m_pRMovie;
 	u32 m_uNextMovieID;
 	int m_MovieX;

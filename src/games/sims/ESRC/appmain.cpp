@@ -4,8 +4,13 @@
  ******************/
 #include "appmain.h"
 #include <SDL2/SDL.h>
+
 #include "common/util/e_globalmanager.h"
+
 #include "engine/e_main.h"
+
+#include "ESRC/global.h"
+
 #include "icon.h"
 
 ESimsApp _app;
@@ -13,11 +18,12 @@ ESimsApp _app;
 ESimsApp::ESimsApp()
 {
     m_pGameStateMan = NULL;
+    m_bLoadedIntroDataSet = false;
+    // m_pFullWindow = NULL;
 }
 
 ESimsApp::~ESimsApp()
 {
-
 }
 
 char *ESimsApp::GetModuleDirectory()
@@ -42,11 +48,9 @@ char *ESimsApp::GetAppName()
 
 void ESimsApp::PlayMovie(u32 resid, int x, int y)
 {
-
 }
 void ESimsApp::StopMovie()
 {
-
 }
 bool ESimsApp::IsMoviePlaying()
 {
@@ -67,8 +71,8 @@ void ESimsApp::Init()
 
     EGlobalManagerClient *mgr;
 
-    SDL_Surface* surf = SDL_CreateRGBSurface(0, SIMS1_WIDTH, SIMS1_HEIGHT, 32, 0xff000000,0x00ff0000,0x0000ff00,0x00000ff);
-    if(surf)
+    SDL_Surface *surf = SDL_CreateRGBSurface(0, SIMS1_WIDTH, SIMS1_HEIGHT, 32, 0xff000000, 0x00ff0000, 0x0000ff00, 0x00000ff);
+    if (surf)
     {
         SDL_SetWindowIcon(win, surf);
     }
@@ -76,15 +80,39 @@ void ESimsApp::Init()
 
 void ESimsApp::Main()
 {
-
 }
 
 void ESimsApp::Update()
 {
-
 }
 
 void ESimsApp::Shutdown()
 {
-    
+    _globals.BeginSaveGame();
+    m_pGameStateMan->DeleteAllStates();
+
+    if (m_pGameStateMan == NULL) // ?????
+    {
+        m_pGameStateMan = NULL;
+    }
+    else
+    {
+        m_pGameStateMan = new EGameStateMan();
+        m_pGameStateMan = NULL;
+    }
+
+    _globals.Reset();
+    //_pclMan.DestroyOrphans();
+    //_rletexman.Shutdown();
+    if (m_bLoadedIntroDataSet != false)
+    {
+        //_datasetman.DelRef(0xed510790);
+        //m_bLoadedIntroDataSet = false;
+    }
+
+/*
+    if(m_pFullWindow != NULL)
+    {
+        m_pFullWindow->WindowMatrixChanged(); // ((int)&(pEVar1->m_mWindow).field0_0x0 + (int)*(short *)&pEVar1->__vtable->Select,3);
+    }*/
 }

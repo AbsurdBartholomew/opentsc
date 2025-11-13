@@ -64,6 +64,6 @@ protected:
 	virtual void Main();
 	void DeallocateStack();
 	static void ThreadEntryPoint(void *pThis);
+private:
+	
 };
-
-extern EThread table[4];
