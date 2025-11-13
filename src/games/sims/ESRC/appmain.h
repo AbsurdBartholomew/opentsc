@@ -39,3 +39,5 @@ protected:
     void SystemUpdate() { ; }
     int GetAppStackSize() { ; }
 };
+
+extern ESimsApp _app;

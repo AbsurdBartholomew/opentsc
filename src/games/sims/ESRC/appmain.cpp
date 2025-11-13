@@ -8,6 +8,8 @@
 #include "engine/e_main.h"
 #include "icon.h"
 
+ESimsApp _app;
+
 ESimsApp::ESimsApp()
 {
     m_pGameStateMan = NULL;

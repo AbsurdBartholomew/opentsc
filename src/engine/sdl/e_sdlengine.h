@@ -8,6 +8,8 @@
 
 class ESdlEngine : public EEngine
 {
+public:
+    ESdlEngine();
     static bool InitMemoryManager();
 };
 

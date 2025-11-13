@@ -21,7 +21,6 @@ static SDL_GLContext context;
 static SDL_Event ev;
 SDL_Surface* surface = NULL;
 static int shouldClose = 0;
-ESimsApp* theApp;
 
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 448
@@ -32,9 +31,6 @@ EThread _idleThread;
 
 int main(int argc, char* argv[])
 {
-    theApp = new ESimsApp();
-    _pEngine = new ESdlEngine();
-
     SystemStart();
     EGlobalManager::Startup();
     _pApp->SetArgs(argc, argv);
