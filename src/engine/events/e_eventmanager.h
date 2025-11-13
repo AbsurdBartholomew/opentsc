@@ -4,7 +4,7 @@
  ******************/
 #pragma once
 
-#include "games/sims/ESRC/e_semaphore.h"
+#include "common/sync/sdl/e_semaphore.h"
 
 typedef u32 EHListenerHandle;
 typedef void (*EHCallbackFn)(/* parameters unknown */);
