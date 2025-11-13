@@ -13,7 +13,7 @@ LIBRARIES := -lmingw32 -lgdi32 -lSDL2main -lSDL2 -lOpengl32 -lglu32 -Wl,--dynami
 OPTIMIZATION := -O0
 
 # Compiler Stuff
-CPPFLAGS := -I$(SOURCE_ROOT) -MMD -MP
+CPPFLAGS := -I$(SOURCE_ROOT) -I$(GAME_FOLDER) -MMD -MP -DAPP_NAME=\""$(APP_NAME)\""
 CFLAGS   := -Wall -Wno-write-strings
 LDFLAGS  := -L$(LIB_DIR) -static-libgcc -static
 

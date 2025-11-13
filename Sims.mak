@@ -1,4 +1,5 @@
 PROJECT_NAME = Sims
+APP_NAME = The Sims
 
 SOURCE_ROOT = src
 GAME_FOLDER = $(SOURCE_ROOT)/games/sims
