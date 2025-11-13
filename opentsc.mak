@@ -29,7 +29,7 @@ clean:
 
 ############ Program Compilation ############
 $(BIN): $(OBJS) | $(BIN_DIR)
-	$(CXX) $(LDFLAGS) $^ $(LIBRARIES) $(WIN_RES) -o $@
+	$(CXX) $(LDFLAGS) $^ $(LIBRARIES) res/$(WIN_RES) -o $@
 
 $(OUT_DIR)/%.o: ./%.cpp | $(OUT_DIR)
 	@mkdir -p $(dir $@)
