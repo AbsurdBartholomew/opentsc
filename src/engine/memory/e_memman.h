@@ -3,6 +3,9 @@
  * Replace me     *
  ******************/
 #pragma once
+#include <stdio.h>
+#include <string.h>
+
 #include "engine/e_metrics.h"
 #include "common/types.h"
 

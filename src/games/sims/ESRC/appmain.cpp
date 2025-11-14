@@ -10,6 +10,7 @@
 #include "engine/e_main.h"
 
 #include "ESRC/global.h"
+#include "ESRC/e_rletextureman.h"
 
 #include "icon.h"
 
@@ -69,7 +70,7 @@ void ESimsApp::Init()
     int iLanguage;
     void *ptr;
 
-    EGlobalManagerClient *mgr;
+    _rletexman.Init("rletextures");
 
     SDL_Surface *surf = SDL_CreateRGBSurface(0, SIMS1_WIDTH, SIMS1_HEIGHT, 32, 0xff000000, 0x00ff0000, 0x0000ff00, 0x00000ff);
     if (surf)

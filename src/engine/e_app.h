@@ -13,6 +13,11 @@ enum EAppState {
 	E_APPSTATE_MOVIEPLAY = 2
 };
 
+enum ELanguage
+{
+    E_LANGUAGE_ENGLISH,
+};
+
 class EApp : public EThread
 {
 public:
