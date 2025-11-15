@@ -4,15 +4,18 @@
  ******************/
 #pragma once
 
+#include "common/datastruc/e_redblacktree.h"
 #include "common/sync/e_mutex.h"
 #include "common/sdl/e_sdlfileio.h"
 #include "engine/resource/e_resource.h"
+
+typedef TRedBlackTree<unsigned int,EResource *> EResourceMap;
 
 class EResourceManager
 {
 protected:
     EMutex m_dataMutex;
-    //EResourceMap m_resourceMap;
+    EResourceMap m_resourceMap;
     EString m_dataType;
     EString m_path;
     bool m_initialized;
@@ -32,13 +35,18 @@ public:
     EResource *AddRef();
     //void AddRef();
     void DelRef(EResource *pResource);
-    void DelRef();
+    void DelRef(char *szName);
+    void DelRef(u32 id);
+
     void Reload(char *szName);
     void Reload();
+
     bool IsValid(char *szName);
     bool IsValid();
+
     bool IsLoaded(char *szName);
     bool IsLoaded();
+
     u32 GetSize(u32 id);
     u32 GetSize();
     void GetIds(u32 *&idsOut, int &idCountOut);
@@ -46,7 +54,7 @@ public:
     EResource *GetRef();
     EResource *AddRefAsync(u32 id);
     EResource *GetRefAsync(u32 id, bool bWait);
-    static u32 CalcId(/* parameters unknown */);
+    static u32 CalcId(char *szName);
     static void SetTraceState(/* parameters unknown */);
     static bool GetTraceState(/* parameters unknown */);
     void PrintLoadedResources();

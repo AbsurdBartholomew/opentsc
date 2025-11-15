@@ -55,3 +55,8 @@ EMutex &EMutex::operator--()
     return this;*/
     return *this;
 }
+
+EAutoMutex::EAutoMutex(EMutex &mutex) : m_mutex(mutex)
+{
+    m_mutex.Release();
+}

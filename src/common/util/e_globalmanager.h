@@ -11,22 +11,23 @@ struct EGMClientData {
 	int priority;
 };
 
-class EGlobalManager {
-protected:
-	static bool m_startupComplete;
-	static bool m_shutdownComplete;
-	static EGMClientData m_clients[32];
-	static int m_nClients;
-	static int m_nStartedUpClients;
-	
+class EGlobalManager {	
 public:
 	static bool Startup();
 	static void Shutdown();
 
 	friend class EEngine;
 	friend class EGlobalManagerClient;
+	friend class EAllocBucket;
+	
 protected:
 	static void Register(EGlobalManagerClient *pClient, int priority);
+protected:
+	static bool m_startupComplete;
+	static bool m_shutdownComplete;
+	static EGMClientData m_clients[32];
+	static int m_nClients;
+	static int m_nStartedUpClients;
 };
 
 class EGlobalManagerClient {

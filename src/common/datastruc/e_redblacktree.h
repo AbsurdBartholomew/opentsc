@@ -13,7 +13,8 @@ struct RBIteratorPtrType // can't find a definition for this struct anywhere ???
 
 typedef u32 RBKey;
 typedef u32 RBValue;
-typedef RBIteratorPtrType *RBIterator;
+//typedef RBIteratorPtrType *RBIterator;
+typedef u32 RBIterator;
 
 enum RBNodeColor
 {
@@ -58,8 +59,8 @@ public:
     RBIterator FindFirst(RBKey key, RBValue *pOutValue);
     RBIterator FindNext(RBIterator i, RBValue *pOutValue);
 
-    bool Remove(RBIterator i);
-    void Remove();
+    void Remove(RBIterator i, int d);
+    bool Remove(RBKey key);
     void RemoveAll();
     void FreeAll();
 
@@ -98,19 +99,7 @@ template<typename a, typename T> struct TRedBlackTree : public ERedBlackTree {
 	//T* operator[]();
 	//T*& operator[]();
 
-	RBIterator Insert();
-	RBIterator Find();
-	RBIterator FindFirst();
-	RBIterator FindNext();
-
-	bool Remove();
 	bool Delete();
-
-	RBIterator SetValue();
-	void SetValues();
-
-	static u32 GetKey(/* parameters unknown */);
-	static T* GetValue(/* parameters unknown */);
     
 	void DeleteAll();
 	void SafeDeleteAll();

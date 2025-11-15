@@ -20,7 +20,7 @@ struct EMetricValue {
 
 template <class T, int a, int b> class TLinkedList
 {
-protected:
+public:
 	T *m_pHead;
 	T *m_pTail;
 

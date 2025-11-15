@@ -20,3 +20,10 @@ public:
 	EMutex& operator++();
 	EMutex& operator--();
 };
+
+class EAutoMutex {
+public:
+	EAutoMutex(EMutex &mutex);
+private:
+	EMutex &m_mutex;
+};
