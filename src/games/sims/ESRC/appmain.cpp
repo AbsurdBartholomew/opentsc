@@ -73,6 +73,7 @@ void ESimsApp::Init()
     _rletexman.Init("rletextures");
 
     SDL_Surface *surf = SDL_CreateRGBSurface(0, SIMS1_WIDTH, SIMS1_HEIGHT, 32, 0xff000000, 0x00ff0000, 0x0000ff00, 0x00000ff);
+    surf->pixels = (void*)sims1;
     if (surf)
     {
         SDL_SetWindowIcon(win, surf);
@@ -104,7 +105,7 @@ void ESimsApp::Shutdown()
 
     _globals.Reset();
     //_pclMan.DestroyOrphans();
-    //_rletexman.Shutdown();
+    _rletexman.Shutdown();
     if (m_bLoadedIntroDataSet != false)
     {
         //_datasetman.DelRef(0xed510790);

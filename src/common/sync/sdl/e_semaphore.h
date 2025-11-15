@@ -3,6 +3,7 @@
  * Replace me     *
  ******************/
 #pragma once
+#include <SDL2/SDL_mutex.h>
 
 #include "common/types.h"
 #include "common/sync/e_syncobject.h"
@@ -13,6 +14,7 @@ protected:
 	int m_maxCount;
 	int m_waits;
 	int m_count;
+	SDL_semaphore *m_sema;
 	
 public:
 	ESemaphore(int maxCount, int initialCount);
@@ -31,3 +33,5 @@ public:
 	//ESemaphore& operator++();
 	//ESemaphore& operator--();
 };
+
+extern int _semaphoreBreakId;

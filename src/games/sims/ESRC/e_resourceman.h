@@ -4,18 +4,20 @@
  ******************/
 #pragma once
 
+#include "common/sync/e_mutex.h"
+#include "common/sdl/e_sdlfileio.h"
 #include "engine/resource/e_resource.h"
 
 class EResourceManager
 {
 protected:
-    //EMutex m_dataMutex;
+    EMutex m_dataMutex;
     //EResourceMap m_resourceMap;
     EString m_dataType;
     EString m_path;
     bool m_initialized;
     u32 *m_pIndex;
-    //EFile *m_pArchiveFile;
+    EFile *m_pArchiveFile;
     bool m_bSeqAccess;
     static bool m_bTraceEnabled;
 
