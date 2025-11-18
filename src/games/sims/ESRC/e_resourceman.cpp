@@ -15,6 +15,7 @@ EResourceManager::EResourceManager()
 
 void EResourceManager::Init(char *szDataType)
 {
+    m_dataType = EString();
     m_dataType = szDataType;
     CalcPath();
 

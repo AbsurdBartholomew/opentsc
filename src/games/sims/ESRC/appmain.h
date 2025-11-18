@@ -38,7 +38,7 @@ public:
     int GetEventTableSize();
 
 protected:
-    void Main();
+    //void Main();
     void Init();
     void Update();
     void Shutdown();

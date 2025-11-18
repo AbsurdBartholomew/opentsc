@@ -40,9 +40,7 @@ char *EApp::GetDataDirectory()
 
 void EApp::Main()
 {
-    long lVar3;
-
-    lVar3 = _pEngine->m_retraceHistoryCpu[2];
+    long lVar3 = _pEngine->m_retraceHistoryCpu[2];
 
     if(lVar3 != 0)
     {

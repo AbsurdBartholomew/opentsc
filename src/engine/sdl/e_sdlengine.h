@@ -9,8 +9,8 @@
 class ESdlEngine : public EEngine
 {
 public:
-    ESdlEngine();
+    //ESdlEngine();
     static bool InitMemoryManager();
 };
 
-extern EEngine *_pEngine;
+extern ESdlEngine _engine;

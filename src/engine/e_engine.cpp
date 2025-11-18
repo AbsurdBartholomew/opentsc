@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include "e_engine.h"
 
+#include "common/math/e_mat4.h"
+
 int _evenodd = 0;
 int _framecount = 0;
 int _retracecount = 0;
@@ -15,17 +17,33 @@ int _fps = 60;
 float _cputime = 0.0166666675f;
 float _rendtime = 0.0166666675f;
 double _time = 0;
+EMat4 _mId;
 
 float _retracetime = 0.f;
+EEngine *_pEngine = NULL;
 
 EEngine::EEngine()
 {
-    EEvent *event;
     int r;
 
     EGlobalManager::Register(this, 5);
     m_frameClock = EClock();
-    // event->m_sema = new ESemaphore();
+    m_frameEvent.m_sema = ESemaphore();
+    m_frameEvent.m_sema.Create(2, 0);
+    m_cpuClock = EClock();
+
+    m_initialized = true;
+    _retracetime = 0.01666667;
+    m_frameRateSmoothing = true;
+
+    //if(_iVideoMode == 1)
+    //{
+    //    _retracetime = 0.02;
+    //}
+
+    //_mId.Id();
+
+    _pEngine = this;
 }
 
 void EEngine::ManagedShutdown()

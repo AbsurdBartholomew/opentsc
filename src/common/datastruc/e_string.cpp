@@ -21,6 +21,7 @@ char _estringError[8] =
 
 EString::EString()
 {
+    m_p = "\0";
 }
 
 EString::EString(char c)

@@ -7,6 +7,7 @@
 #include "e_thread.h"
 #include "engine/memory/e_memman.h"
 #include "common/types.h"
+#include "engine/e_app.h"
 
 EThread::EThread()
 {
@@ -98,7 +99,8 @@ int EThread::GetStackSize()
 
 void EThread::ThreadEntryPoint(void *pThis)
 {
-    
+    _pApp->Init();
+    _pApp->Main();
     //(**(void **)(pThis + 0x1c) + 0x14))
     //        ((int)pThis + (int)*(short *)(*(int *)((int)pThis + 0x1c) + 0x10));
 }

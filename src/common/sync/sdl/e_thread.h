@@ -44,7 +44,7 @@ public:
 	void Attach(int id);
 	void AttachToCallingThread();
 	void Destroy();
-	void SetThreadName(char *szName) { m_szName = m_szName; }
+	inline void SetThreadName(char *szName) { m_szName = m_szName; }
 	char* GetThreadName() { return m_szName; }
 	void Start();
 	void Stop();

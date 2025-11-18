@@ -53,6 +53,7 @@ public:
     void SetArgs(int nArgc, char **ppszArgv);
 	char* GetArg(char *pszFlag);
 
+    friend class EThread;
 protected:
     virtual void Main();
     virtual void Init();

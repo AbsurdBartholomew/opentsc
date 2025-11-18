@@ -4,6 +4,8 @@
 ******************/
 #pragma once
 
+#include "common/math/e_vec3.h"
+
 struct EMat4
 {
     union
@@ -29,4 +31,59 @@ struct EMat4
             float _33;
         };
     };
+
+    EMat4();
+    void operator=(float v);
+	operator float *();
+	EVec4& operator[](int row);
+
+	EVec3 GetColumn3();
+    void GetColumn(int column, EVec4 &vCol);
+    void SetColumn(int column, EVec4 &vCol);
+
+    EMat4 operator*();
+	EMat4 operator*=(EMat4);
+    
+	EVec3 Mult4x4();
+    void Mult(EVec4 &vIn, EVec4 &vOut);
+	EVec3 VectorRotate();
+    EMat4& Normalize();
+	EMat4& Transpose();
+    EMat4& Id();
+	EMat4& Translate(EVec3 &v);
+    EMat4& Scale(EVec3 &v);
+    EMat4& Rotate(EVec3 &vAxis, float angle);
+    EMat4& RotateX(float angle);
+	EMat4& RotateY(float angle);
+	EMat4& RotateZ(float angle);
+	EMat4& PreRotateX(float angle);
+	EMat4& PostRotateX(float angle);
+	EMat4& PreRotateY(float angle);
+	EMat4& PostRotateY(float angle);
+	EMat4& PreRotateZ(float angle);
+	EMat4& PostRotateZ(float angle);
+	EMat4& PreTranslate(EVec3 &vTrans);
+    EMat4& PostTranslate(EVec3 &vTrans);
+    EMat4& PreScale(float scale);
+    EMat4& PostScale(float scale);
+    void Conform(EVec3 &vNormal);
+	EMat4& LookAt(EVec3 &vEye, EVec3 &vTarget, EVec3 &vUp);
+	EMat4& LookAtPos(EVec3 &vEye, EVec3 &vTarget, EVec3 &vUp);
+	EMat4& LookAtDirect(EVec3 &vOldUnitDir, EVec3 &vNewUnitDir, float multiplier);
+	EMat4& LookTo(EVec3 &vEye, EVec3 &vTarget, EVec3 &vUp);
+	EMat4& Projection(float fovYDegrees, float aspect, float nearPlane, float farPlane);
+	EMat4& Ortho(float left, float right, float bottom, float top, float nearPlane, float farPlane);
+	EMat4& BlendEuler(float u, EMat4 &mA, EMat4 &mB);
+	EMat4& BlendQuat(float u, EMat4 &mA, EMat4 &mB);
+	EMat4& TexturePerspectiveProjection(EVec3 &vSource, EVec3 &vTarget, EVec3 &vUp, float fovYDegrees, float aspect, float tileU, float tileV);
+	EMat4& TexturePlanarProjection(EVec3 &vSource, EVec3 &vTarget, EVec3 &vUp, float width, float height, float tileU, float tileV);
+	bool Invert(EMat4 &mSource);
+    bool InvertComplex();
+    void SimpleInvert(EMat4 &mSource);
+	void GetHPR(float &heading, float &pitch, float &roll);
+	void Clamp();
+	void Print();
+	float GetMaxScale();
+	float ExtractAxisRotation(EVec3 &vAxis);
+    void SoftwareMult(EMat4 &l, EMat4 &r);
 };

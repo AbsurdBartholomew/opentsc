@@ -20,25 +20,19 @@ public:
 		return m_p;
 	}
 
-	EString &operator=(char *szSource)
+	void operator=(char *szSource)
 	{
-		char *pOld;
-
-		char *p;
-
-		p = this->m_p;
 		MakeCopy(szSource);
-		Deallocate(p);
 	}
 
-	EString operator+(char c)
+	void operator+(char c)
 	{
 		char cb[2];
 		
 		cb[1] = '\0';
 		EString(*(char **)(int)c,cb);
 	}
-	EString &operator+=(char *sz)
+	void operator+=(char *sz)
 	{
 		EString t;
 

@@ -20,17 +20,18 @@ struct EEventInfo
     EEventInfo();
 };
 
-struct EEvent
+class EEvent
 {
-protected:
-    ESemaphore m_sema;
-
 public:
+    friend class EEngine;
+
     EEvent();
     bool Wait();
     void Signal();
     void iSignal();
     void Clear();
+protected:
+    ESemaphore m_sema;
 };
 
 class EEventManager

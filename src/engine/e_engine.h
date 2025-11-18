@@ -50,3 +50,5 @@ protected:
 	void Line();
 	void RetraceUpdate(float frameTime);
 };
+
+extern EEngine *_pEngine;
