@@ -6,7 +6,7 @@
 
 #include "common/file/e_filesystem.h"
 
-struct ESdlFileSystem : EFileSystem {
+class ESdlFileSystem : public EFileSystem {
 private:
 	char m_pszHostIPAddress[16];
 	

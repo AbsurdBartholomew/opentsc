@@ -1,19 +1,19 @@
-#PROJECT_NAME = opentsc
-
 SOURCE_ROOT = src
 SOURCES += $(wildcard $(SOURCE_ROOT)/*.cpp) \
 			$(wildcard $(SOURCE_ROOT)/engine/*.cpp) $(wildcard $(SOURCE_ROOT)/engine/*/*.cpp) \
 			$(wildcard $(SOURCE_ROOT)/common/*.cpp) $(wildcard $(SOURCE_ROOT)/common/*/*.cpp) $(wildcard $(SOURCE_ROOT)/common/*/*/*.cpp)
 
-#OUT_DIR := out/
-#BIN_DIR := bin
-#BIN_NAME := $(PROJECT_NAME).exe
 LIB_DIR := lib
 LIBRARIES := -lmingw32 -lgdi32 -lSDL2main -lSDL2 -lOpengl32 -lglu32 -Wl,--dynamicbase -Wl,--nxcompat -lm -ldinput8 -ldxguid -ldxerr8 -luser32 -lgdi32 -lwinmm -limm32 -lole32 -loleaut32 -lshell32 -lsetupapi -lversion -luuid
 OPTIMIZATION := -O0
 
+ifndef PLATFORM
+PLATFORM := Sdl
+endif
+
 # Compiler Stuff
-CPPFLAGS := -I$(SOURCE_ROOT) -I$(GAME_FOLDER) -MMD -MP -DAPP_NAME=\""$(APP_NAME)\""
+
+CPPFLAGS := -I$(SOURCE_ROOT) -I$(GAME_FOLDER) -MMD -MP -DAPP_NAME=\""$(APP_NAME)\"" -D$(PLATFORM)
 CFLAGS   := -Wall -Wno-write-strings
 LDFLAGS  := -L$(LIB_DIR) -static-libgcc -static
 

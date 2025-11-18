@@ -21,7 +21,6 @@ char _estringError[8] =
 
 EString::EString()
 {
-    
 }
 
 EString::EString(char c)
@@ -96,5 +95,89 @@ int EString::Tokenize(char sep, TArray<EString> &tokens)
 
 void EString::MakeCopy(char *szSource)
 {
+    int len;
+    int allocSize;
+    char *pData;
 
+    char *pDest;
+    size_t sVar1;
+    u32 size;
+
+    if (szSource == NULL)
+    {
+        sVar1 = 0;
+    }
+    else
+    {
+        sVar1 = strlen(szSource);
+    }
+    size = (int)sVar1 + 1;
+    if (sVar1 == 0)
+    {
+        SetToNull();
+    }
+    else
+    {
+        pDest = (char *)_memmanAlloc(size, 4);
+        if (pDest == NULL)
+        {
+            SetToError();
+        }
+        else
+        {
+            memcpy(pDest, szSource, size);
+            this->m_p = pDest;
+        }
+    }
+}
+
+int EString::GetLength()
+{
+    return strlen(m_p);
+}
+
+EString EString::Mid(int pos)
+{
+    EString str = EString();
+    str = m_p;
+    int in_a2_lo = 0; // ?
+
+    /* inlined from c:/eor/src2/common/datastruc/e_string.h */
+    str.MakeCopy((char *)(*(int *)pos + in_a2_lo));
+    /* end of inlined section */
+    return str;
+}
+
+EString EString::Left(int count)
+{
+    EString str = EString();
+    str = m_p;
+    int pos;
+
+    char *pcVar1;
+    int in_a2_lo = 0; // ?
+
+    /* inlined from c:/eor/src2/common/datastruc/e_string.h */
+    // pcVar1 = __opPc__C7EString((EString *)count);
+    pcVar1 = "a";
+
+    str.MakeCopy(pcVar1);
+    str.m_p[in_a2_lo] = '\0';
+    // pcVar1 = __opPc__C7EString(str);
+    str.MakeCopy(pcVar1);
+    str.Deallocate(str.m_p);
+    /* end of inlined section */
+    return str;
+}
+
+EString EString::Right(int count)
+{
+    EString str = EString();
+    str = m_p;
+    int iVar1;
+    int in_a2_lo = 0; // ?
+
+    iVar1 = GetLength();
+    str.MakeCopy((char *)(*(int *)count + (iVar1 - in_a2_lo)));
+    return str;
 }

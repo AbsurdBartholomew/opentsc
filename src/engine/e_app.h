@@ -45,9 +45,9 @@ public:
     virtual void StopMovie();
     virtual bool IsMoviePlaying();
 
-    //virtual FnAlloc GetMovieAllocator();
-    //virtual FnAllocAlign GetMovieAllocatorAlign();
-    //virtual FnFree GetMovieDeallocator();
+    virtual FnAlloc GetMovieAllocator();
+    virtual FnAllocAlign GetMovieAllocatorAlign();
+    virtual FnFree GetMovieDeallocator();
     virtual int GetEventTableSize();
 
     void SetArgs(int nArgc, char **ppszArgv);

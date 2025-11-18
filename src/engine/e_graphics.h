@@ -4,16 +4,16 @@
 ******************/
 #pragma once
 
-#include "engine/e_rc.h"
 #include "common/types.h"
 #include "common/math/e_vec3.h"
 #include "common/math/e_mat4.h"
 #include "common/util/e_globalmanager.h"
 #include "engine/e_dl.h"
+#include "common/sync/e_mutex.h"
 
 struct ETextureDef {
-	//FnAllocAlign pfnAllocAlign;
-	//FnFree pfnFree;
+	FnAllocAlign pfnAllocAlign;
+	FnFree pfnFree;
 	u32 flags;
 	float mipMapShift;
 	u16 xsize;
@@ -36,6 +36,8 @@ enum ECoordinateSystem {
 	E_COORDSYS_XRIGHT_YUP_ZBACK = 1
 };
 
+class ERC;
+
 class EGraphics : EGlobalManagerClient
 {
 protected:
@@ -55,7 +57,7 @@ protected:
 	int m_nRenderContexts;
 	EMat4 m_mNormalMap;
 	EVec3 m_backgroundColor;
-	//EMutex m_allocMutex;
+	EMutex m_allocMutex;
 	EDL *m_pDeselectTextureDL;
 	//ERFont *m_pFont;
 	ECoordinateSystem m_coordSys;

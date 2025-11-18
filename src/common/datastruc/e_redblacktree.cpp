@@ -168,7 +168,7 @@ LAB_0032173c:
         }
     }
 
-    _allocBucketFree((void*)i, 0x20, 0x20);
+    _allocBucketFree((void *)i, 0x20, 0x20);
 }
 
 bool ERedBlackTree::Remove(RBKey key)
@@ -183,7 +183,28 @@ bool ERedBlackTree::Remove(RBKey key)
     return i != NULL;
 }
 
+void ERedBlackTree::RemoveAll()
+{
+    ERedBlackTreeNode *pNode;
+    ERedBlackTreeNode *pNext;
+    void *p;
+    ERedBlackTreeNode *pEVar1;
+    ERedBlackTreeNode *pAddress;
+
+    /* inlined from c:/eor/src2/common/datastruc/e_linkedlist.h */
+    pAddress = m_list.m_pHead;
+    while (pAddress != NULL)
+    {
+        pEVar1 = pAddress->pNext;
+        _allocBucketFree(pAddress, 0x20, 0x20);
+        pAddress = pEVar1;
+    }
+
+    m_list.m_pTail = NULL;
+    m_list.m_pHead = NULL;
+    m_pRoot = &m_sentinel;
+}
+
 void ERedBlackTree::RemoveFixup(ERedBlackTreeNode *x)
 {
-    
 }

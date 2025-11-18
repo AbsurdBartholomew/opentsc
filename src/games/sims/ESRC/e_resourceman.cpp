@@ -4,7 +4,10 @@
  ******************/
 #include "e_resourceman.h"
 
+#include "common/datastruc/e_redblacktree.h"
 #include "common/util/e_checksum.h"
+#include "engine/resource/e_resloader.h"
+#include "common/sdl/e_sdlfilesystem.h"
 
 EResourceManager::EResourceManager()
 {
@@ -12,10 +15,27 @@ EResourceManager::EResourceManager()
 
 void EResourceManager::Init(char *szDataType)
 {
+    m_dataType = szDataType;
+    CalcPath();
+
+    m_initialized = true;
 }
 
 void EResourceManager::Shutdown()
 {
+    if(m_resourceMap.GetList()->m_pHead != NULL)
+    {
+        PrintLoadedResources();
+    }
+    m_resourceMap.RemoveAll();
+
+    if(_pResLoader != NULL)
+    {
+
+    }
+
+    CloseArchiveFile();
+    m_initialized = false;
 }
 
 EResource *EResourceManager::AllocateAndLoadResource()
@@ -75,4 +95,41 @@ void EResourceManager::DelRef(EResource *pResource)
 u32 EResourceManager::CalcId(char *szName)
 {
     return EChecksum::ComputeSymbol(szName);
+}
+
+void EResourceManager::CalcPath()
+{
+    EString m_pathPrefix;
+    char* dataType;
+
+    dataType = (char*)m_dataType;
+    if(8 < m_path.GetLength())
+    {
+        m_pathPrefix.Left(m_path.GetLength());
+        m_path = m_pathPrefix;
+    }
+}
+
+void EResourceManager::PrintLoadedResources()
+{
+
+}
+
+void EResourceManager::CloseArchiveFile()
+{
+    EFile *pArchiveFile = m_pArchiveFile;
+
+    m_dataMutex.Acquire(0xffffffff);
+    m_pArchiveFile = NULL;
+    m_dataMutex.Release();
+
+    if(m_pArchiveFile != NULL)
+    {
+        _eorFileSys.Destroy(pArchiveFile);
+    }
+}
+
+EResource *EResourceManager::AllocateAndLoadResource(EFile *pFile, u32 uLength)
+{
+
 }

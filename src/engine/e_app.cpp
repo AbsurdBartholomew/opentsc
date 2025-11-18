@@ -6,6 +6,7 @@
 #include "common/types.h"
 #include "common/sync/sdl/e_thread.h"
 #include "engine/sdl/e_sdlengine.h"
+#include "engine/memory/e_memman.h"
 
 EApp *_pApp = NULL;
 
@@ -87,6 +88,22 @@ void EApp::PlayMovie(u32 resid, int x, int y)
 {
 }
 
+FnAlloc EApp::GetMovieAllocator()
+{
+    //return (FnAlloc)_memmanAlloc;
+    return 0;
+}
+
+FnAllocAlign EApp::GetMovieAllocatorAlign()
+{
+    return 0;
+}
+
+FnFree EApp::GetMovieDeallocator()
+{
+    return 0;
+}
+
 void EApp::StopMovie()
 {
 }
@@ -112,9 +129,14 @@ char *EApp::GetModuleDirectory()
     return "\\eor\\bin\\iop";
 }
 
+#define STR_IMPL(A) #A
+#define STR(A) STR_IMPL(A)
+
+#define BUILD_VERSION STR(EOR Engine v2.0 built __TIME__ __DATE__)
+
 char *EApp::GetBuildVersion()
 {
-    return "EOR Engine v2.0 built 10:48:31 Oct  3 2002 ";
+    return BUILD_VERSION;
 }
 
 char *EApp::GetAppName()

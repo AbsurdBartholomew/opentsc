@@ -9,6 +9,7 @@
 #include "common/math/e_mat4.h"
 #include "engine/e_dl.h"
 #include "engine/e_window.h"
+#include "engine/e_graphics.h"
 
 struct EGEVert {
 	EVec4 vModel;
@@ -18,13 +19,19 @@ struct EGEVert {
 	unsigned int weights[4];
 };
 
+struct EDLEntry {
+	u64 align_data;
+};
+
+typedef void (*PFNRCCallback)(/* parameters unknown */);
+
 class ERC
 {
 protected:
     EDL *m_pdl;
 	int m_nEntriesLeftInSeg;
-	//EDLEntry *m_pEntry;
-	//RCMode m_mode;
+	EDLEntry *m_pEntry;
+	RCMode m_mode;
 	bool m_closed;
 	bool m_anyCommands;
 	int m_lastCommand;

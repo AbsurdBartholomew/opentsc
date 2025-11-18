@@ -72,9 +72,9 @@ protected:
     static bool LookupId(/* parameters unknown */);
 
 private:
-    //EResource *addRef(u32 id, EFile *pSourceFile, int seekIfLoaded, bool bWait);
+    EResource *addRef(u32 id, EFile *pSourceFile, int seekIfLoaded, bool bWait);
 
 protected:
-    ///* vtable[4] */ virtual EResource *AllocateAndLoadResource(EFile *pFile, u32 uLength);
+    /* vtable[4] */ virtual EResource *AllocateAndLoadResource(EFile *pFile, u32 uLength);
     /* vtable[5] */ virtual EResource *AllocateAndLoadResource();
 };

@@ -78,7 +78,7 @@ public:
     static RBKey GetKey(/* parameters unknown */);
     static RBValue GetValue(/* parameters unknown */);
     int GetSize();
-    ERedBlackTreeNodeList *GetList();
+    ERedBlackTreeNodeList *GetList() {  return &m_list; }
 
 protected:
     void Init();

@@ -54,3 +54,6 @@ typedef int GoalRef;
 typedef int NodeRef;
 typedef int RectRef;
 
+typedef void* (*FnAllocAlign)(u32 size, u32 align);
+typedef void (*FnFree)(void *p);
+typedef void* (*FnAlloc)(u32 size);
