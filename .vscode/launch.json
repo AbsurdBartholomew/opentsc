@@ -1,0 +1,29 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Launch Sims 1",
+            "type": "cppdbg",
+            "request": "launch",
+            "serverLaunchTimeout": 10000,
+            "stopAtEntry": false,
+            "program": "${workspaceFolder}/src/games/sims/bin/Sims.exe",
+            "MIMode": "gdb",
+            "externalConsole": true,
+            "cwd": "${workspaceFolder}",
+
+            "windows": {
+                "miDebuggerPath": "E:/w64/w64devkit/bin/gdb.exe",
+                "setupCommands": [
+                    {
+                    "description": "Enable pretty-printing for gdb",
+                    "ignoreFailures": true,
+                        "text": "file ${workspaceFolder}/src/games/sims/bin/Sims.exe -enable-pretty-printing"
+                    }]
+            },
+        }
+    ]
+}
