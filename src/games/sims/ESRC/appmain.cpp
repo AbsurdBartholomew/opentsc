@@ -11,8 +11,6 @@
 #include "ESRC/global.h"
 #include "ESRC/e_rletextureman.h"
 
-#include "icon.h"
-
 ESimsApp _app;
 
 ESimsApp::ESimsApp()
