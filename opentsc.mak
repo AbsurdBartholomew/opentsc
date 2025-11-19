@@ -12,6 +12,8 @@ ifndef PLATFORM
 PLATFORM := Sdl
 endif
 
+BUILD_LOG := $(PROJECT_NAME)Log.txt
+
 # Compiler Stuff
 
 CPPFLAGS := -I$(SOURCE_ROOT) -I$(GAME_FOLDER) -MMD -MP -DAPP_NAME=\""$(APP_NAME)\"" -D$(PLATFORM)
@@ -34,7 +36,7 @@ $(BIN): $(OBJS) | $(BIN_DIR)
 
 $(OUT_DIR)/%.o: ./%.cpp | $(OUT_DIR)
 	@mkdir -p $(dir $@)
-	@$(CXX) $(CPPFLAGS) $(CFLAGS) -g -c $< -o $@ >> $(PROJECT_NAME)Log.txt 2>&1
+	@$(CXX) $(CPPFLAGS) $(CFLAGS) -g -c $< -o $@ >> $(BUILD_LOG) 2>&1
 	$(info Compiling $<)
 
 $(BIN_DIR) $(OUT_DIR):
