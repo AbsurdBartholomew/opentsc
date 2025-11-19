@@ -2,6 +2,7 @@
  * OpenTSC Header *
  * Replace me     *
  ******************/
+#include <stdio.h>
 #include "e_app.h"
 #include "common/types.h"
 #include "common/sync/sdl/e_thread.h"
@@ -12,7 +13,7 @@ EApp *_pApp = NULL;
 
 EApp::EApp()
 {
-    m_done = 0;
+    m_done = false;
     // m_appState = E_APPSTATE_NORMAL;
     // m_appNextState = E_APPSTATE_NORMAL;
     // m_pRMovie = (ERMovie *)0x0;
@@ -40,11 +41,12 @@ char *EApp::GetDataDirectory()
 
 void EApp::Main()
 {
-    long lVar3 = _pEngine->m_retraceHistoryCpu[2];
+    //long lVar3 = _pEngine->m_retraceHistoryCpu[2];
+    long lVar3 = 1;
 
     if(lVar3 != 0)
     {
-        while(m_done != false)
+        while(m_done == false)
         {
             Update();
         }

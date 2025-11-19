@@ -55,7 +55,7 @@ public:
 
     friend class EThread;
 protected:
-    virtual void Main();
+    void Main();
     virtual void Init();
     virtual void Update();
     virtual void SystemInit();

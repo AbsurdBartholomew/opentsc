@@ -73,6 +73,16 @@ EResource *EResourceManager::AddRef(EResource *pResource)
 
 }
 
+EResource *EResourceManager::AddRef(u32 id, EFile *pSourceFile, int seekIfLoaded)
+{
+
+}
+
+EResource *EResourceManager::addRef(u32 id, EFile *pSourceFile, int seekIfLoaded, bool bWait)
+{
+
+}
+
 void EResourceManager::DelRef(EResource *pResource)
 {
     int iVar2;

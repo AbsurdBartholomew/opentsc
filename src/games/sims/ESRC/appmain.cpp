@@ -2,11 +2,13 @@
  * OpenTSC Header *
  * Replace me     *
  ******************/
+#include <stdio.h>
 #include "appmain.h"
 
 #include "common/util/e_globalmanager.h"
 
 #include "engine/e_main.h"
+#include "engine/dataset/e_datasetman.h"
 
 #include "ESRC/global.h"
 #include "ESRC/e_rletextureman.h"
@@ -73,6 +75,7 @@ void ESimsApp::Init()
 
 void ESimsApp::Update()
 {
+    
 }
 
 void ESimsApp::Shutdown()
@@ -95,8 +98,8 @@ void ESimsApp::Shutdown()
     _rletexman.Shutdown();
     if (m_bLoadedIntroDataSet != false)
     {
-        //_datasetman.DelRef(0xed510790);
-        //m_bLoadedIntroDataSet = false;
+        _datasetman.DelRef(0xed510790);
+        m_bLoadedIntroDataSet = false;
     }
 
 /*

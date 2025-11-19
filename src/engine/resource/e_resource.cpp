@@ -91,6 +91,12 @@ void EResource::SafeDelete()
     }
 }
 
+void EResource::Reload(EStream &s)
+{
+}
+
+/******************************************************************************************/
+/* Type Info Stuff */
 ETypeInfo *EResource::GetTypeInfo()
 {
     return &m_typeInfo;
@@ -116,11 +122,8 @@ u16 EResource::GetReadVersion()
     return m_typeInfo.m_readVersion;
 }
 
-void EResource::Reload(EStream &s)
-{
-}
-
 ETypeInfo *EResource::RegisterType(u16 version)
 {
     return m_typeInfo.Register((FnNew)New, version, "EResource", &m_typeInfo);
 }
+/******************************************************************************************/

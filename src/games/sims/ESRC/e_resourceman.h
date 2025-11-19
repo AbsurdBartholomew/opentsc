@@ -32,7 +32,7 @@ public:
     /* vtable[2] */ virtual void Init(char *szDataType);
     /* vtable[3] */ virtual void Shutdown();
     EResource *AddRef(EResource *pResource);
-    EResource *AddRef();
+    EResource *AddRef(u32 id, EFile *pSourceFile, int seekIfLoaded);
     //void AddRef();
     void DelRef(EResource *pResource);
     void DelRef(char *szName);

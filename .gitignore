@@ -4,4 +4,6 @@ src2/
 bin/
 obj/
 
+Log.txt
+
 setvars.bat

@@ -49,6 +49,7 @@ int main(int argc, char* argv[])
         if(ev.type == SDL_QUIT)
         {
             shouldClose = 1;
+            _pApp->m_done = true;
         }
     }
 

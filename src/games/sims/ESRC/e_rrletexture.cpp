@@ -231,6 +231,8 @@ void ERRleTexture::SafeDelete()
 {
 }
 
+/******************************************************************************************/
+/* Type Info Stuff */
 ETypeInfo *ERRleTexture::GetTypeInfo()
 {
     return &m_typeInfo;
@@ -265,6 +267,7 @@ ERRleTexture *ERRleTexture::CreateCopy()
 {
     CreateCopy();
 }
+/******************************************************************************************/
 
 u32 *ERRleTexture::GetPalette()
 {
