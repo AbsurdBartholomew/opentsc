@@ -5,5 +5,6 @@ bin/
 obj/
 
 Log.txt
+*Log.txt
 
 setvars.bat
