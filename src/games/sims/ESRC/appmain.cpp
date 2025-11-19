@@ -70,7 +70,6 @@ void ESimsApp::Init()
     void *ptr;
 
     _rletexman.Init("rletextures");
-    printf("Initialized\n");
 }
 
 void ESimsApp::Update()
