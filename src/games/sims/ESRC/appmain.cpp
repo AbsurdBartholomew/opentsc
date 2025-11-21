@@ -70,6 +70,13 @@ void ESimsApp::Init()
     void *ptr;
 
     _rletexman.Init("rletextures");
+    EResourceManager::SetTraceState(true);
+    _datasetman.AddRef(0xed510790, (EFile *)NULL, 0);
+    m_bLoadedIntroDataSet = true;
+
+    _globals.LoadIntroRequirements();
+
+    m_pGameStateMan = new EGameStateMan();
 }
 
 void ESimsApp::Update()

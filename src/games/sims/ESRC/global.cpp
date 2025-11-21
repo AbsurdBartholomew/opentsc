@@ -124,3 +124,8 @@ void EGlobal::CallTestUnlocked(u32 code, u16 *pnBitCode)
 s32 EGlobal::CallNewScore(s16 nPlayerNum, s16 nScore, s16 nComponent1, s16 nComponent2, s16 nComponent3, s16 nComponent4)
 {
 }
+
+void EGlobal::LoadIntroRequirements()
+{
+    
+}

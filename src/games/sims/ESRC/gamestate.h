@@ -24,15 +24,12 @@ protected:
 	EGameStateId m_state;
 	EGameStateMan *m_pStateMan;
 public:
-	EGameState& operator=(EGameState state) { ; }
-
 	EGameState();
-    EGameState(int a);
 
-    virtual void Init(int a);
-    virtual void Update();
-    virtual void Draw();
-    virtual void Reset(int a);
+    virtual void Init(int a) = 0;
+    virtual void Update() = 0;
+    virtual void Draw() = 0;
+    virtual void Reset(int a) = 0;
 
     EGameStateId GetState() { return m_state; }
 };

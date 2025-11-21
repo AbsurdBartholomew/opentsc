@@ -31,8 +31,9 @@ public:
     EResourceManager();
     /* vtable[2] */ virtual void Init(char *szDataType);
     /* vtable[3] */ virtual void Shutdown();
-    EResource *AddRef(EResource *pResource);
+    void *AddRef(EResource *pResource);
     EResource *AddRef(u32 id, EFile *pSourceFile, int seekIfLoaded);
+    EResource *AddRef(char *szName, EFile *pSourceFile, int seekIfLoaded);
     //void AddRef();
     void DelRef(EResource *pResource);
     void DelRef(char *szName);
@@ -42,7 +43,7 @@ public:
     void Reload();
 
     bool IsValid(char *szName);
-    bool IsValid();
+    bool IsValid(u32 id);
 
     bool IsLoaded(char *szName);
     bool IsLoaded();
@@ -51,12 +52,12 @@ public:
     u32 GetSize();
     void GetIds(u32 *&idsOut, int &idCountOut);
     EResource *GetRef(char *szName);
-    EResource *GetRef();
+    EResource *GetRef(u32 id);
     EResource *AddRefAsync(u32 id);
     EResource *GetRefAsync(u32 id, bool bWait);
     static u32 CalcId(char *szName);
-    static void SetTraceState(/* parameters unknown */);
-    static bool GetTraceState(/* parameters unknown */);
+    inline static void SetTraceState(bool state) { m_bTraceEnabled = state; }
+    inline static bool GetTraceState() { return m_bTraceEnabled; }
     void PrintLoadedResources();
     u32 GetFirstLoadedId();
     u32 GetNextLoadedId(u32 prevId);
@@ -68,8 +69,8 @@ protected:
     void CalcPath();
     bool LookupId(EResourceManager *pManager, u32 id, u32 &posOut, u32 &lengthOut);
     void AddResource(EResource *pResource, u32 id);
-    static int BinarySearch(/* parameters unknown */);
-    static bool LookupId(/* parameters unknown */);
+    static int BinarySearch(u32 searchKey, u32 *keys, int count);
+    static bool LookupId(u32 id, u32 &posOut, u32 &lengthOut);
 
 private:
     EResource *addRef(u32 id, EFile *pSourceFile, int seekIfLoaded, bool bWait);
@@ -77,4 +78,13 @@ private:
 protected:
     /* vtable[4] */ virtual EResource *AllocateAndLoadResource(EFile *pFile, u32 uLength);
     /* vtable[5] */ virtual EResource *AllocateAndLoadResource();
+
+    void *_AddRef(EResource *pResource) { AddRef(pResource); }
+    EResource *_AddRef(u32 id, EFile *pSourceFile, int seekIfLoaded) { return AddRef(id, pSourceFile, seekIfLoaded); }
+    EResource *_AddRef(char *szName, EFile *pSourceFile, int seekIfLoaded) { return AddRef(szName, pSourceFile, seekIfLoaded); }
+    void _DelRef(EResource *pResource) { DelRef(pResource); }
+    void _DelRef(char *szName) { DelRef(szName); }
+    void _DelRef(u32 id) { DelRef(id); }
+    EResource *_AddRefAsync(u32 id) { return AddRefAsync(id); }
+    EResource *_GetRefAsync(u32 id, bool bWait) { return GetRefAsync(id, bWait); }
 };

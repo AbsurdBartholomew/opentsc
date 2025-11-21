@@ -36,7 +36,7 @@ $(BIN): $(OBJS) | $(BIN_DIR)
 
 $(OUT_DIR)/%.o: ./%.cpp | $(OUT_DIR)
 	@mkdir -p $(dir $@)
-	@$(CXX) $(CPPFLAGS) $(CFLAGS) -g -c $< -o $@ >> $(BUILD_LOG) 2>&1
+	@$(CXX) $(CPPFLAGS) $(CFLAGS) -g -c $< -o $@
 	$(info Compiling $<)
 
 $(BIN_DIR) $(OUT_DIR):
