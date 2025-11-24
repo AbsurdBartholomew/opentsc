@@ -164,10 +164,121 @@ EResource *EResourceManager::GetRefAsync(u32 id, bool bWait)
     return result;
 }
 
+void EResourceManager::OpenArchiveFile()
+{
+    EFile *pArchiveFile;
+
+    EFile *pEVar1;
+    int iVar2;
+
+    /* end of inlined section */
+    m_dataMutex.Acquire(0xffffffff);
+    pEVar1 = this->m_pArchiveFile;
+    m_dataMutex.Release();
+    if (pEVar1 == NULL)
+    {
+        /* end of inlined section */
+        iVar2 = *(int *)&this->m_bSeqAccess;
+        while ((_eorFileSys.Create(m_pArchiveFile, m_path, "rb", DT_DEFAULT, (AccessMode)(iVar2 != 0)),
+                m_pArchiveFile == NULL &&
+                /*
+                    ((*(code *)_pResLoader->__vtable[1].OpenFiles)((int)&_pResLoader->__vtable +
+                                                                   (int)*(short *)&_pResLoader->__vtable[1].NewDataFiles),*/
+                     m_pArchiveFile == NULL))//)
+        {
+            iVar2 = *(int *)&this->m_bSeqAccess;
+        }
+    }
+}
+
 EResource *EResourceManager::addRef(u32 id, EFile *pSourceFile, int seekIfLoaded, bool bWait)
 {
+#if 0
+s32 addRef__16EResourceManagerUiP5EFileib(void *arg0, s32 id, void **pSourceFile, s32 bWait) {
+    ? sp14;
+    s32 sp10;
+    s32 spC;
+    s32 sp8;
+    s32 sp4;
+    s32 var_s2;
+    s32 var_s4;
+    void **var_s0;
+    void *temp_a0;
+    void *temp_v0;
+    void *temp_v1;
+    void *temp_v1_2;
+    void *temp_v1_3;
+    void *temp_v1_4;
+
+    if (id == 0) {
+        return 0;
+    }
+    Acquire__6EMutexUi(arg0, 0xFFFFFFFF);
+    var_s4 = 1;
+    temp_a0 = arg0 + 0x18;
+    if (Find__C13ERedBlackTreeUiPUi(temp_a0, id, sp) != 0) {
+        subroutine_arg0->unk10 = (s32) (subroutine_arg0->unk10 + 1);
+        if (bWait != 0) {
+            temp_v1 = *pSourceFile;
+            temp_v1->unk24(pSourceFile + temp_v1->unk20, bWait, 1);
+        }
+    } else {
+        sp10 = bWait;
+        var_s4 = 0;
+        spC = 0;
+        Release__6EMutex(arg0);
+        var_s0 = pSourceFile;
+        if (pSourceFile != NULL) {
+            temp_v1_2 = *var_s0;
+            var_s2 = temp_v1_2->unk2C(var_s0 + temp_v1_2->unk28);
+            LookupId__16EResourceManagerUiRUiT2(arg0, id, &sp4, &sp8);
+            goto block_11;
+        }
+        if (LookupId__16EResourceManagerUiRUiT2(arg0, id, &spC, &sp10) != 0) {
+            if (arg0->unk34 == NULL) {
+                OpenArchiveFile__16EResourceManager(arg0);
+            }
+            var_s0 = arg0->unk34;
+            var_s2 = spC;
+block_11:
+            temp_v1_3 = *_pResLoader;
+            if (temp_v1_3->unk4C(_pResLoader + temp_v1_3->unk48, arg0, id, var_s0) == 0) {
+                if (M2C_ERROR(/* Read from unset register $t0 */) != 0) {
+                    if (arg0 == _pAudiosampleman) {
+                        temp_v1_4 = *var_s0;
+                        temp_v1_4->unk24(var_s0 + temp_v1_4->unk20, var_s2 + sp10, 0);
+                    }
+                    if (subroutine_arg0 != 0) {
+                        goto block_16;
+                    }
+                }
+            } else {
+block_16:
+                Acquire__6EMutexUi(arg0, 0xFFFFFFFF);
+                var_s4 = 1;
+                subroutine_arg0->unk8 = arg0;
+                subroutine_arg0->unkC = id;
+                if (Insert__13ERedBlackTreeUiUib(temp_a0, id, subroutine_arg0, 0) == 0) {
+                    Find__C13ERedBlackTreeUiPUi(temp_a0, id, &sp14);
+                    subroutine_arg0->unk10 = (s32) (subroutine_arg0->unk10 + 1);
+                } else {
+                    Release__6EMutex(arg0, id);
+                    var_s4 = 0;
+                    temp_v0 = subroutine_arg0->unk0;
+                    temp_v0->unk4C(subroutine_arg0 + temp_v0->unk48, subroutine_arg0);
+                }
+            }
+        }
+    }
+    if (var_s4 != 0) {
+        Release__6EMutex(arg0);
+    }
+    return subroutine_arg0;
+}
+#endif
     EResource *pResource;
     bool bInMutex;
+    u32 b = (u32)bWait;
     u32 key;
     EFile *pUseFile;
     u32 pos;
@@ -175,7 +286,6 @@ EResource *EResourceManager::addRef(u32 id, EFile *pSourceFile, int seekIfLoaded
     u32 startOffset;
     u32 testPos;
     u32 testLength;
-    u32 key;
     EResource *pAlreadyThere;
 
     bool bVar3;
@@ -209,34 +319,34 @@ EResource *EResourceManager::addRef(u32 id, EFile *pSourceFile, int seekIfLoaded
 
     if (pSourceFile == (EFile *)NULL)
     {
-        bVar3 = LookupId(id, (u32 *)((u32)&pResource | 0xc), &length);
+        bVar3 = LookupId(id, pos, b);
         if (!bVar3)
             goto LAB_00133f20;
         if (this->m_pArchiveFile == NULL)
         {
             OpenArchiveFile();
             pSourceFile = this->m_pArchiveFile;
-            //uVar5 = pos;
+            // uVar5 = pos;
         }
         else
         {
             pSourceFile = this->m_pArchiveFile;
-           // uVar5 = pos;
+            // uVar5 = pos;
         }
     }
     else
     {
-       // uVar5 = (*(code *)pSourceFile->__vtable->GetDrive)((int)&pSourceFile->__vtable +
-       //                                                    (int)*(short *)&pSourceFile->__vtable->GetDeviceType);
-        //LookupId(id, (u32 *)((u32)&pResource | 4), (u32 *)((u32)&pResource | 8));
+        // uVar5 = (*(code *)pSourceFile->__vtable->GetDrive)((int)&pSourceFile->__vtable +
+        //                                                    (int)*(short *)&pSourceFile->__vtable->GetDeviceType);
+        // LookupId(id, (u32 *)((u32)&pResource | 4), (u32 *)((u32)&pResource | 8));
     }
-    //lVar6 = (*(code *)_pResLoader->__vtable[1].TerminateThread)((int)&_pResLoader->__vtable + (int)*(short *)&_pResLoader->__vtable[1].Shutdown, this, id, pSourceFile, uVar5, length, bWait);
-   // pResource = (EResource *)lVar6;
-  //  if (lVar6 == 0)
+    // lVar6 = (*(code *)_pResLoader->__vtable[1].TerminateThread)((int)&_pResLoader->__vtable + (int)*(short *)&_pResLoader->__vtable[1].Shutdown, this, id, pSourceFile, uVar5, length, bWait);
+    // pResource = (EResource *)lVar6;
+    //  if (lVar6 == 0)
     {
         if (!bWait)
             goto LAB_00133f20;
-       // if (this == &_pAudiosampleman->field0_0x0)
+        // if (this == &_pAudiosampleman->field0_0x0)
         {
             //(*(code *)pSourceFile->__vtable->GetAccessMode)((int)&pSourceFile->__vtable + (int)*(short *)&pSourceFile->__vtable->GetIOMode,
             //                                                uVar5 + length, 0);
@@ -252,7 +362,7 @@ EResource *EResourceManager::addRef(u32 id, EFile *pSourceFile, int seekIfLoaded
     pResource->m_resId = id;
     /* inlined from /eor/src2/common/datastruc/e_redblacktree.h */
     pos = m_resourceMap.Insert(id, (u32)pResource, false);
-    //puVar4 = Insert__13ERedBlackTreeUiUib(&this_00->field0_0x0, id, (u32)pResource, false);
+    // puVar4 = Insert__13ERedBlackTreeUiUib(&this_00->field0_0x0, id, (u32)pResource, false);
     /* end of inlined section */
     if (pos == NULL)
     {
@@ -265,8 +375,8 @@ EResource *EResourceManager::addRef(u32 id, EFile *pSourceFile, int seekIfLoaded
     {
         m_dataMutex.Release();
         bInMutex = false;
-    //    pEVar1 = (pResource->field0_0x0).__vtable;
-    //    (*(code *)pEVar1[2].SafeDelete)((int)&(pResource->field0_0x0).__vtable + (int)*(short *)(pEVar1 + 2));
+        //    pEVar1 = (pResource->field0_0x0).__vtable;
+        //    (*(code *)pEVar1[2].SafeDelete)((int)&(pResource->field0_0x0).__vtable + (int)*(short *)(pEVar1 + 2));
     }
 LAB_00133f20:
     if (bInMutex)

@@ -15,6 +15,92 @@ ERedBlackTree::ERedBlackTree(ERedBlackTree &s)
 {
 }
 
+ERedBlackTreeNode *ERedBlackTree::FindKeyOrParent(RBKey key)
+{
+    ERedBlackTreeNode *pCurrent;
+    ERedBlackTreeNode *pParent;
+
+    ERedBlackTreeNode *pEVar1;
+    u32 uVar2;
+    ERedBlackTreeNode *pEVar3;
+
+    pEVar1 = this->m_pRoot;
+    pEVar3 = (ERedBlackTreeNode *)0x0;
+    if (pEVar1 != &m_sentinel)
+    {
+        uVar2 = pEVar1->key;
+        pEVar3 = pEVar1;
+        while (true)
+        {
+            if (key == uVar2)
+            {
+                return pEVar3;
+            }
+            if (key < uVar2)
+            {
+                pEVar1 = pEVar3->pLeft;
+            }
+            else
+            {
+                pEVar1 = pEVar3->pRight;
+            }
+            if (pEVar1 == &m_sentinel)
+                break;
+            uVar2 = pEVar1->key;
+            pEVar3 = pEVar1;
+        }
+    }
+    return pEVar3;
+}
+
+ERedBlackTreeNode *ERedBlackTree::FindParent(RBKey key)
+{
+    ERedBlackTreeNode *pCurrent;
+    ERedBlackTreeNode *pParent;
+
+    pParent = NULL;
+    pCurrent = this->m_pRoot;
+    if (this->m_pRoot != &m_sentinel)
+    {
+        do
+        {
+            pParent = pCurrent;
+            if (key < pParent->key)
+            {
+                pCurrent = pParent->pLeft;
+            }
+            else
+            {
+                pCurrent = pParent->pRight;
+            }
+        } while (pCurrent != &m_sentinel);
+    }
+    return pParent;
+}
+
+RBIterator ERedBlackTree::Insert(RBKey key, RBValue value, bool allowDuplicates)
+{
+    ERedBlackTreeNode *pParent;
+
+    if (allowDuplicates)
+    {
+        pParent = FindParent(key);
+    }
+    else
+    {
+        pParent = FindKeyOrParent(key);
+        if ((pParent != NULL) && (pParent->key == key))
+        {
+            return NULL;
+        }
+    }
+    return InsertAt(pParent, key, value);
+}
+
+RBIterator ERedBlackTree::InsertAt(ERedBlackTreeNode *pParent, RBKey key, RBValue value)
+{
+}
+
 RBIterator ERedBlackTree::Find(RBKey key, RBValue *pOutValue)
 {
     ERedBlackTreeNode *pCurrent;
