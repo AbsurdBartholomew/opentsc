@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "e_memman.h"
+#include "engine/e_metrics.h"
 
 void *_memmanAlloc(u32 size, u32 alignment, char *szFile, u32 line)
 {

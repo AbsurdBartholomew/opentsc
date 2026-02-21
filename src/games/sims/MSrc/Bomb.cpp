@@ -32,6 +32,8 @@ int dbAssert(char *szFile, u32 line, char *szExpr)
     _assertionFailed = 1;
     _assertFile = szFile;
     _assertExpr = szExpr;
+
+    printf("ASSERTION FAILED: %s\n\nFile: %s\nLine: %d", szExpr, szFile, line);
     return 1;
 }
 

@@ -4,6 +4,8 @@
 ******************/
 #pragma once
 
+//#include "engine/memory/e_memman.h"
+
 enum EMetricType {
 	E_METRIC_FLOAT = 0,
 	E_METRIC_INT = 1,
@@ -20,9 +22,11 @@ struct EMetricValue {
 
 template <class T, int a, int b> class TLinkedList
 {
-public:
+public: // protected:
 	T *m_pHead;
 	T *m_pTail;
+
+	int count;
 
 	int x = a;
 	int y = b;
@@ -35,7 +39,7 @@ public:
 
 	static T*& Last(T* node)
 	{
-
+		return node->m_pTail;
 	}
 
 	static T*& Next(T* node)
@@ -51,17 +55,18 @@ public:
 
 	void RemoveAll()
 	{
-
+		_memmanFree(m_pHead);
+		_memmanFree(m_pTail);
 	}
 
 	T* Head()
 	{
-
+		return m_pHead;
 	}
 
 	T* Tail()
 	{
-
+		return m_pTail;
 	}
 
 	bool IsEmpty()

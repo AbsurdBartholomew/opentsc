@@ -4,6 +4,7 @@
  ******************/
 #pragma once
 
+#include "engine/e_metrics.h"
 #include "common/datastruc/e_nodelist.h"
 #include "common/storage/e_typeinfo.h"
 
@@ -18,16 +19,10 @@ protected:
 
 public:
     ERDataset();
+    virtual ~ERDataset();
     
-    static ERDataset *New(/* parameters unknown */);
-    /* vtable[1] */ virtual void SafeDelete();
-    /* vtable[2] */ virtual ETypeInfo *GetTypeInfo();
-    /* vtable[3] */ virtual char *GetTypeName();
-    /* vtable[4] */ virtual u32 GetTypeKey();
-    /* vtable[5] */ virtual u16 GetTypeVersion();
-    static u16 GetReadVersion(/* parameters unknown */);
-    static ETypeInfo *RegisterType(u16 version);
-    ERDataset *CreateCopy();
+    DECLARE_TYPEINFO(ERDataset)
+    
     void Load(EFile *pFile, u32 uLength);
 
 protected:

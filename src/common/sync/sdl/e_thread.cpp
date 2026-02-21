@@ -99,8 +99,10 @@ int EThread::GetStackSize()
 
 void EThread::ThreadEntryPoint(void *pThis)
 {
-    _pApp->Init();
-    _pApp->Main();
+    EThread *thread = (EThread*)pThis;
+
+    _pApp->Init(); // TODO: find where to stick this as this isn't part of the original TheadEntryPoint function
+    thread->Main();
     //(**(void **)(pThis + 0x1c) + 0x14))
     //        ((int)pThis + (int)*(short *)(*(int *)((int)pThis + 0x1c) + 0x10));
 }

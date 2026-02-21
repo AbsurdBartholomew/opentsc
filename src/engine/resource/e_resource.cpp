@@ -6,8 +6,6 @@
 #include "e_resource.h"
 #include "ESRC/e_resourceman.h"
 
-ETypeInfo EResource::m_typeInfo;
-
 EResource::EResource()
 {
     m_name.SetToNull();
@@ -17,11 +15,6 @@ EResource::EResource()
 
 void EResource::Init()
 {
-}
-
-EResource *EResource::New()
-{
-    return new EResource();
 }
 
 void EResource::Read(EStream &s)
@@ -82,14 +75,14 @@ void EResource::Reload(EFile *pFile)
     //(*(code *)pEVar1[2].GetTypeName)((int)&(this->field0_0x0).__vtable + (int)*(short *)&pEVar1[2].GetTypeInfo, &s);
     //___11EFileStream(&s, 2);
 }
-
+/*
 void EResource::SafeDelete()
 {
     if (this != NULL)
     {
         //(*(code *)this->__vtable[1].GetTypeKey)((int)&this->__vtable + (int)*(short *)&this->__vtable[1].GetTypeName, 3);
     }
-}
+}*/
 
 void EResource::Reload(EStream &s)
 {
@@ -97,7 +90,7 @@ void EResource::Reload(EStream &s)
 
 /******************************************************************************************/
 /* Type Info Stuff */
-FILL_OUT_TYPE_INFO(EResource)
+DEFINE_TYPEINFO(EResource)
 /*
 ETypeInfo *EResource::GetTypeInfo()
 {
@@ -127,5 +120,5 @@ u16 EResource::GetReadVersion()
 ETypeInfo *EResource::RegisterType(u16 version)
 {
     return m_typeInfo.Register((FnNew)New, version, "EResource", &m_typeInfo);*/
-}
+//}
 /******************************************************************************************/

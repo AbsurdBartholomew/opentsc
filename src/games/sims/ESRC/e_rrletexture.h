@@ -26,15 +26,8 @@ public:
 	ERRleTexture();
     virtual ~ERRleTexture();
     
-	static ERRleTexture* New();
-	/* vtable[1] */ virtual void SafeDelete();
-	/* vtable[2] */ virtual ETypeInfo* GetTypeInfo();
-	/* vtable[3] */ virtual char* GetTypeName();
-	/* vtable[4] */ virtual u32 GetTypeKey();
-	/* vtable[5] */ virtual u16 GetTypeVersion();
-	static u16 GetReadVersion();
-	static ETypeInfo* RegisterType(u16 version);
-	ERRleTexture* CreateCopy();
+	DECLARE_TYPEINFO(ERRleTexture)
+	
 	void Load(EStream &s);
 	void RestartDecompression();
 	u32 GetNextPixel();

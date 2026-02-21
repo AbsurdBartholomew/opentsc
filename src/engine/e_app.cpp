@@ -14,9 +14,9 @@ EApp *_pApp = NULL;
 EApp::EApp()
 {
     m_done = false;
-    // m_appState = E_APPSTATE_NORMAL;
-    // m_appNextState = E_APPSTATE_NORMAL;
-    // m_pRMovie = (ERMovie *)0x0;
+    m_appState = E_APPSTATE_NORMAL;
+    m_appNextState = E_APPSTATE_NORMAL;
+    //m_pRMovie = NULL;
     m_uNextMovieID = 0;
 
     _pApp = this;

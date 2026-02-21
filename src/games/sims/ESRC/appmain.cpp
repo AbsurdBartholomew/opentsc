@@ -71,7 +71,7 @@ void ESimsApp::Init()
 
     _rletexman.Init("rletextures");
     EResourceManager::SetTraceState(true);
-    _datasetman.AddRef(0xed510790, (EFile *)NULL, 0);
+    _datasetman.AddRef(0xed510790, NULL, 0);
     m_bLoadedIntroDataSet = true;
 
     _globals.LoadIntroRequirements();

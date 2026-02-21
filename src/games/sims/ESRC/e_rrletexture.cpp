@@ -7,7 +7,7 @@
 
 #include "engine/memory/e_memman.h"
 
-FILL_OUT_TYPE_INFO(ERRleTexture)
+DEFINE_TYPEINFO(ERRleTexture)
 
 ERRleTexture::ERRleTexture()
 {
@@ -220,10 +220,6 @@ u8 ERRleTexture::GetEightBitNum()
         m_nImageBufIndex = uVar1 + 1;
     }
     return bVar2;
-}
-
-void ERRleTexture::SafeDelete()
-{
 }
 
 /******************************************************************************************/

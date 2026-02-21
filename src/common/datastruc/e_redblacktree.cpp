@@ -9,10 +9,18 @@ ERedBlackTreeNode ERedBlackTree::m_sentinel;
 
 ERedBlackTree::ERedBlackTree()
 {
+    m_list.m_pTail = NULL;
+    m_pRoot = &m_sentinel;
+    m_list.m_pHead = NULL;
 }
 
 ERedBlackTree::ERedBlackTree(ERedBlackTree &s)
 {
+    m_list.m_pTail = NULL;
+    m_pRoot = &m_sentinel;
+    m_list.m_pHead = NULL;
+
+    SetValues(s, true);
 }
 
 ERedBlackTreeNode *ERedBlackTree::FindKeyOrParent(RBKey key)
@@ -293,4 +301,58 @@ void ERedBlackTree::RemoveAll()
 
 void ERedBlackTree::RemoveFixup(ERedBlackTreeNode *x)
 {
+}
+
+RBIterator ERedBlackTree::SetValue(RBKey key, RBValue value)
+{
+    ERedBlackTreeNode *pParent;
+
+    pParent = FindKeyOrParent(key);
+    if ((pParent == NULL) || (pParent->key != key))
+    {
+        pParent = (ERedBlackTreeNode *)
+            InsertAt(pParent, key, value);
+    }
+    else
+    {
+        pParent->value = value;
+    }
+    return pParent->key;
+}
+
+void ERedBlackTree::SetValues(ERedBlackTree &s, bool allowDuplicates)
+{
+    RBIterator i;
+    RBKey key;
+    RBValue value;
+    ERedBlackTreeNode *pEVar1;
+
+    /* inlined from c:/eor/src2/common/datastruc/e_linkedlist.h */
+    pEVar1 = (s.m_list).m_pHead;
+    /* end of inlined section */
+    if (pEVar1 != (ERedBlackTreeNode *)0x0)
+    {
+        /* inlined from c:/eor/src2/common/datastruc/e_redblacktree.h */
+        key = pEVar1->key;
+        while (true)
+        {
+            /* end of inlined section */
+            if (allowDuplicates)
+            {
+                Insert(key, pEVar1->value, true);
+                pEVar1 = pEVar1->pNext;
+            }
+            else
+            {
+                SetValue(key, pEVar1->value);
+                /* inlined from c:/eor/src2/common/datastruc/e_redblacktree.h */
+                pEVar1 = pEVar1->pNext;
+            }
+            /* end of inlined section */
+            if (pEVar1 == NULL)
+                break;
+            key = pEVar1->key;
+        }
+    }
+    return;
 }

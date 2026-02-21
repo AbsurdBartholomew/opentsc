@@ -45,17 +45,17 @@ bool ESemaphore::IsCreated()
 
 bool ESemaphore::Acquire(u32 nTimeout)
 {
-
+    return true;
 }
 
 bool ESemaphore::Release()
 {
-
+    return true;
 }
 
 bool ESemaphore::iAcquire()
 {
-
+    return true;
 }
 
 void ESemaphore::iRelease()
