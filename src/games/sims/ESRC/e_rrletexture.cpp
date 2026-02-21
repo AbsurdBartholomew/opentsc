@@ -7,7 +7,7 @@
 
 #include "engine/memory/e_memman.h"
 
-ETypeInfo ERRleTexture::m_typeInfo;
+FILL_OUT_TYPE_INFO(ERRleTexture)
 
 ERRleTexture::ERRleTexture()
 {
@@ -19,11 +19,6 @@ ERRleTexture::~ERRleTexture()
 {
     _memmanFree(m_nImageBuf);
     _memmanFree(m_nPalette);
-}
-
-ERRleTexture *ERRleTexture::New()
-{
-    return new ERRleTexture();
 }
 
 void ERRleTexture::Load(EStream &s)
@@ -233,6 +228,7 @@ void ERRleTexture::SafeDelete()
 
 /******************************************************************************************/
 /* Type Info Stuff */
+/*
 ETypeInfo *ERRleTexture::GetTypeInfo()
 {
     return &m_typeInfo;
@@ -258,15 +254,18 @@ u16 ERRleTexture::GetReadVersion()
     return m_typeInfo.m_readVersion;
 }
 
+#define REGISTER_TYPE(class_name) return m_typeInfo.Register((FnNew)New, version, #class_name, &m_typeInfo)
+
 ETypeInfo *ERRleTexture::RegisterType(u16 version)
 {
-    return m_typeInfo.Register((FnNew)New, version, "ERRleTexture", &m_typeInfo);
+    REGISTER_TYPE(ERRleTexture);
+    //return m_typeInfo.Register((FnNew)New, version, "ERRleTexture", &m_typeInfo);
 }
 
 ERRleTexture *ERRleTexture::CreateCopy()
 {
     CreateCopy();
-}
+}*/
 /******************************************************************************************/
 
 u32 *ERRleTexture::GetPalette()

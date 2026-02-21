@@ -15,6 +15,8 @@ void ERDataset::Load(EFile *pFile, u32 uLength)
 }
 /******************************************************************************************/
 /* Type Info Stuff */
+FILL_OUT_TYPE_INFO(ERDataset)
+/*
 ETypeInfo ERDataset::m_typeInfo;
 
 void ERDataset::SafeDelete()
@@ -55,5 +57,5 @@ ETypeInfo *ERDataset::RegisterType(u16 version)
 {
     return m_typeInfo.Register((FnNew)New, version, "ERDataset",
                                &m_typeInfo);
-}
+}*/
 /******************************************************************************************/
