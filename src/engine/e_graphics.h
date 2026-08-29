@@ -38,7 +38,7 @@ enum ECoordinateSystem {
 
 class ERC;
 
-class EGraphics : EGlobalManagerClient
+class EGraphics : public EGlobalManagerClient
 {
 protected:
 	bool m_insideBeginEnd;

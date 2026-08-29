@@ -9,9 +9,14 @@
 
 #include "engine/e_main.h"
 #include "engine/dataset/e_datasetman.h"
+#include "engine/window/e_3dwindow.h"
+#include "engine/window/e_portalwindow.h"
+#include "engine/window/e_window.h"
 
 #include "ESRC/global.h"
 #include "ESRC/e_rletextureman.h"
+
+#include "hashes.h"
 
 ESimsApp _app;
 
@@ -19,7 +24,7 @@ ESimsApp::ESimsApp()
 {
     m_pGameStateMan = NULL;
     m_bLoadedIntroDataSet = false;
-    // m_pFullWindow = NULL;
+    m_pFullWindow = NULL;
 }
 
 ESimsApp::~ESimsApp()
@@ -71,7 +76,7 @@ void ESimsApp::Init()
 
     _rletexman.Init("rletextures");
     EResourceManager::SetTraceState(true);
-    _datasetman.AddRef(0xed510790, NULL, 0);
+    _datasetman.AddRef(DATASETS_INTRO, NULL, 0);
     m_bLoadedIntroDataSet = true;
 
     _globals.LoadIntroRequirements();
@@ -81,7 +86,10 @@ void ESimsApp::Init()
 
 void ESimsApp::Update()
 {
-    
+    ERC *prc;
+    int iVar2;
+    EWindow win;
+
 }
 
 void ESimsApp::Shutdown()
@@ -104,7 +112,7 @@ void ESimsApp::Shutdown()
     _rletexman.Shutdown();
     if (m_bLoadedIntroDataSet != false)
     {
-        _datasetman.DelRef(0xed510790);
+        _datasetman.DelRef(DATASETS_INTRO);
         m_bLoadedIntroDataSet = false;
     }
 

@@ -25,7 +25,7 @@ ERDataset *EDatasetManager::AddRef(u32 id, EFile *pSourceStream, int seekIfLoade
 {
     ERDataset *pEVar1 = new ERDataset();
 
-    pEVar1 = (ERDataset *)_AddRef(id, (EFile*)NULL, 0);
+    pEVar1 = (ERDataset *)_AddRef(id, NULL, 0);
     return pEVar1;
 }
 
@@ -33,7 +33,7 @@ ERDataset *EDatasetManager::AddRef(char *szName, EFile *pSourceStream, int seekI
 {
     ERDataset *pEVar1 = new ERDataset();
 
-    pEVar1 = (ERDataset *)_AddRef(szName, (EFile *)NULL, 0);
+    pEVar1 = (ERDataset *)_AddRef(szName, NULL, 0);
     return pEVar1;
 }
 

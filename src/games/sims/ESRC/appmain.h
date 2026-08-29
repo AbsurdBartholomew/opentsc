@@ -14,7 +14,7 @@ class ESimsApp : public EApp
 {
     ERC *m_prc;
     bool m_bLoadedIntroDataSet;
-    //EWindow *m_pFullWindow;
+    EWindow *m_pFullWindow;
 
 protected:
     //ERShader *m_pSplashScreenShader;

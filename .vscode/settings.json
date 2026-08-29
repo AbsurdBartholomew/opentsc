@@ -2,6 +2,8 @@
     "files.associations": {
         "*.gaz": "makefile",
         "*.cpp!": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "text_encoding": "cpp",
+        "typeinfo": "cpp"
     }
 }

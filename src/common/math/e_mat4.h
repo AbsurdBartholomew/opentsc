@@ -66,6 +66,7 @@ struct EMat4
     EMat4& PostTranslate(EVec3 &vTrans);
     EMat4& PreScale(float scale);
     EMat4& PostScale(float scale);
+    EMat4& PostScale(EVec3 &vScale);
     void Conform(EVec3 &vNormal);
 	EMat4& LookAt(EVec3 &vEye, EVec3 &vTarget, EVec3 &vUp);
 	EMat4& LookAtPos(EVec3 &vEye, EVec3 &vTarget, EVec3 &vUp);

@@ -4,7 +4,6 @@
  ******************/
 #pragma once
 #include "common/types.h"
-#include "engine/e_window.h"
 #include "engine/texture/e_texture.h"
 
 struct ERenderSurface

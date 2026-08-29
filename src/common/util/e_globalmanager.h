@@ -6,12 +6,14 @@
 
 class EGlobalManagerClient;
 
-struct EGMClientData {
+struct EGMClientData 
+{
 	EGlobalManagerClient *pClient;
 	int priority;
 };
 
-class EGlobalManager {	
+class EGlobalManager 
+{	
 public:
 	static bool Startup();
 	static void Shutdown();
@@ -30,7 +32,8 @@ protected:
 	static int m_nStartedUpClients;
 };
 
-class EGlobalManagerClient {
+class EGlobalManagerClient 
+{
 public:
 	EGlobalManagerClient() { ; }
 
@@ -38,7 +41,7 @@ public:
 	void Shutdown();
 
     friend class EGlobalManager;
-protected:
+//protected:
 	virtual bool ManagedStartup();
 	virtual void ManagedShutdown();
 };

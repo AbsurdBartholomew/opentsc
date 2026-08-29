@@ -8,7 +8,7 @@
 #include "common/math/e_vec3.h"
 #include "common/math/e_mat4.h"
 #include "engine/e_dl.h"
-#include "engine/e_window.h"
+//#include "engine/window/e_window.h"
 #include "engine/e_graphics.h"
 
 struct EGEVert {
@@ -24,6 +24,9 @@ struct EDLEntry {
 };
 
 typedef void (*PFNRCCallback)(/* parameters unknown */);
+
+class EWindow;
+class EViewport;
 
 class ERC
 {

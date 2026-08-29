@@ -18,3 +18,23 @@ EMat4& EMat4::Id()
 {
     
 }
+
+EMat4& EMat4::PostScale(EVec3 &vScale)
+{
+
+}
+
+EMat4& EMat4::PostScale(float scale)
+{
+
+}
+
+EMat4& EMat4::PostTranslate(EVec3 &vTrans)
+{
+
+}
+
+EMat4& EMat4::Translate(EVec3 &v)
+{
+
+}

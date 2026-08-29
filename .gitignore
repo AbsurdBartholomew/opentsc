@@ -7,4 +7,6 @@ obj/
 Log.txt
 *Log.txt
 
+# local things
 setvars.bat
+b.bat
