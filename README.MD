@@ -4,6 +4,7 @@ A reimplementation of Edge of Reality's PlayStation 2 engine as well as The Sims
 ## Building
 This project was tested using w64devkit. To build:
 `make -f [game].mak [backend]`
+
 where [game] is one of the following:
 - Sims
 - SimsBO
@@ -11,6 +12,7 @@ where [game] is one of the following:
 - Sims2Pets
 - Sims2Castaway
 - Sims3
+
 and [backend] is one of the following:
 - SDL2
 
